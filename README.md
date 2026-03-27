@@ -1,5 +1,7 @@
 # 數值語境表示分析 / Contextual Numerical Representation Analysis
 
+[🇬🇧 English Version](README.en.md)
+
 > **一句話摘要：** 同一個數字 "24"，放在「飛行時數」和「心跳」的句子裡，LLM 內部看到的是同一個東西嗎？
 
 ---
