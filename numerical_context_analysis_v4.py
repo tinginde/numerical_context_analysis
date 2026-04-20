@@ -464,8 +464,8 @@ plt.suptitle(
     fontweight="bold",
 )
 
-os.makedirs("results", exist_ok=True)
-out_path = "results/numerical_context_analysis_v4.png"
+os.makedirs("results/exp_D", exist_ok=True)
+out_path = "results/exp_D/numerical_context_analysis_v4.png"
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
 print(f"Plot saved to: {out_path}")
 plt.close()

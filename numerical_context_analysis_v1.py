@@ -12,6 +12,7 @@ Required packages: torch, transformers, matplotlib, numpy, scikit-learn
 Required login: huggingface-cli login
 """
 
+import os
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
@@ -286,7 +287,8 @@ plt.suptitle(
     fontsize=13, fontweight='bold'
 )
 
-output_path = "numerical_context_analysis.png"
+os.makedirs("results/exp_A_B", exist_ok=True)
+output_path = "results/exp_A_B/numerical_context_analysis_v1.png"
 plt.savefig(output_path, dpi=150, bbox_inches='tight')
 print(f"  Plot saved to: {output_path}")
 plt.close()

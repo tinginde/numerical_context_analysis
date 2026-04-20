@@ -563,9 +563,9 @@ else:
     device = torch.device("cpu")
     print("Using CPU\n")
 
-os.makedirs("results", exist_ok=True)
-RAW_CSV     = "results/v5_raw.csv"
-METRICS_CSV = "results/v5_metrics.csv"
+os.makedirs("results/exp_E", exist_ok=True)
+RAW_CSV     = "results/exp_E/v5_raw.csv"
+METRICS_CSV = "results/exp_E/v5_metrics.csv"
 
 all_rows = []
 
@@ -611,7 +611,7 @@ _bar_fig(
     title="[Accuracy] Is the behavioral output classified correctly?\n"
           "Llama 1B vs 3B  |  [Mod 1] Category uses biomarker-specific labels  "
           "|  chance = 1/6 ≈ 0.17",
-    out_path="results/v5_accuracy.png",
+    out_path="results/exp_E/v5_accuracy.png",
     ylim=(0, 1.15),
     hline=1 / 6,
     hline_label="Chance level (1/6 ≈ 0.17)",
@@ -622,7 +622,7 @@ _bar_fig(
     ylabel="Spearman ρ  (monotonicity within each context)",
         title="[Consistency] Does the output change monotonically with the value?\n"
             "Llama 1B vs 3B  |  ρ = 1 -> perfectly monotonic  |  ρ = 0 -> random",
-    out_path="results/v5_consistency.png",
+    out_path="results/exp_E/v5_consistency.png",
     ylim=(-0.3, 1.15),
     hline=0,
     hline_label="ρ = 0 (random)",
@@ -633,20 +633,20 @@ _bar_fig(
     ylabel="F1 Score  (critical-low / critical-high detection)",
     title="[Risk Alignment] Are extremely dangerous values identified correctly?\n"
           "Llama 1B vs 3B  |  Binary F1 for v_idx ∈ {0, 5}",
-    out_path="results/v5_risk_alignment.png",
+    out_path="results/exp_E/v5_risk_alignment.png",
     ylim=(0, 1.15),
 )
 
-plot_parse_rate(df_metrics, out_path="results/v5_parse_rate.png")
-plot_hybrid_consistency(df_metrics, out_path="results/v5_hybrid_consistency.png")
+plot_parse_rate(df_metrics, out_path="results/exp_E/v5_parse_rate.png")
+plot_hybrid_consistency(df_metrics, out_path="results/exp_E/v5_hybrid_consistency.png")
 
 print("\n" + "=" * 55)
 print("Done! Output files:")
 for f in [RAW_CSV, METRICS_CSV,
-          "results/v5_accuracy.png",
-          "results/v5_consistency.png",
-          "results/v5_risk_alignment.png",
-          "results/v5_parse_rate.png",
-          "results/v5_hybrid_consistency.png"]:
+          "results/exp_E/v5_accuracy.png",
+          "results/exp_E/v5_consistency.png",
+          "results/exp_E/v5_risk_alignment.png",
+          "results/exp_E/v5_parse_rate.png",
+          "results/exp_E/v5_hybrid_consistency.png"]:
     print(f"  {f}")
 print("=" * 55)

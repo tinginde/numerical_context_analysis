@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-RESULTS_DIR = Path(__file__).resolve().parent
+RESULTS_DIR = Path(__file__).resolve().parent / "results" / "exp_E"
 RAW_PATH = RESULTS_DIR / "v5_raw.csv"
 METRICS_PATH = RESULTS_DIR / "v5_metrics.csv"
 
@@ -280,7 +280,7 @@ def build_report(summary: pd.DataFrame, context_df: pd.DataFrame):
         "# v5 Behavior Analysis",
         "",
         "## Scope",
-        "This report analyzes the root-level results/v5 outputs only. The nested v5_v0 folder is excluded.",
+        "This report analyzes the results/exp_E outputs.",
         "",
         "## Executive Summary",
         f"- 1B numeric behavior is dominated by refusal first and central-value collapse second. The highest refusal condition is {worst_refusal['model']} {worst_refusal['format']} {worst_refusal['role']} at {worst_refusal['refusal_rate']:.2f} refusal rate.",
