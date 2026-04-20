@@ -1,15 +1,15 @@
 """
-數值語境表示分析
 Contextual Numerical Representation Analysis
 =============================================
-研究問題：同一個數字（如 "24"）在不同語境下，
-LLM 的內部表示（hidden states）有沒有差異？
+Research question: does the same number (for example, "24")
+have different internal LLM representations (hidden states)
+when it appears in different contexts?
 
-使用方式：直接放入你的 llm-internals-tutorial 資料夾執行
-  python numerical_context_analysis.py
+Usage: place this file in your llm-internals-tutorial folder and run:
+    python numerical_context_analysis.py
 
-需要已安裝：torch, transformers, matplotlib, numpy, scikit-learn
-需要已登入：huggingface-cli login
+Required packages: torch, transformers, matplotlib, numpy, scikit-learn
+Required login: huggingface-cli login
 """
 
 import torch
@@ -23,25 +23,25 @@ plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'SimHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
 print("=" * 70)
-print("數值語境表示分析 | Contextual Numerical Representation Analysis")
+print("Contextual Numerical Representation Analysis")
 print("=" * 70)
 
 # ============================================================
-# 1. 載入模型（與李老師教學相同的模型）
+# 1. Load the model (same model used in the tutorial)
 # ============================================================
-print("\n[步驟 1] 載入模型...")
+print("\n[Step 1] Loading model...")
 
 MODEL_NAME = "meta-llama/Llama-3.2-1B-Instruct"
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
-    print("  使用 CUDA GPU")
+    print("  Using CUDA GPU")
 elif torch.backends.mps.is_available():
     device = torch.device("mps")
-    print("  使用 Apple MPS")
+    print("  Using Apple MPS")
 else:
     device = torch.device("cpu")
-    print("  使用 CPU")
+    print("  Using CPU")
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForCausalLM.from_pretrained(
@@ -50,13 +50,13 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 model.to(device)
 model.eval()
-print(f"  模型載入完成（{model.num_parameters():,} 參數）")
+print(f"  Model loaded ({model.num_parameters():,} parameters)")
 
 # ============================================================
-# 2. 定義實驗句子
+# 2. Define experiment sentences
 # ============================================================
 
-# 實驗 A：同一個數字 "24"，放在不同語境裡
+# Experiment A: the same number "24" placed in different contexts
 EXPERIMENT_A_SENTENCES = [
     "We took 24 hours flight to reach our destination.",
     "He took 24 hours to learn a programming language.",
@@ -72,26 +72,26 @@ EXPERIMENT_A_LABELS = [
     "24 dollars",
 ]
 
-# 實驗 B：同一語境，換三個不同數字（你原本做的實驗）
+# Experiment B: same context, three different numbers (your original experiment)
 EXPERIMENT_B_SENTENCES = [
     "We took 2.4 hours flight to reach our destination.",
     "We took 24 hours flight to reach our destination.",
     "We took 240 hours flight to reach our destination.",
 ]
 EXPERIMENT_B_LABELS = ["2.4 hrs", "24 hrs", "240 hrs"]
-EXPERIMENT_B_NUMBERS = ["2", "24", "240"]   # 對應 tokenizer 切割後的第一個 token
+EXPERIMENT_B_NUMBERS = ["2", "24", "240"]   # Corresponds to the first token after tokenization
 
 # ============================================================
-# 3. 工具函數
+# 3. Helper functions
 # ============================================================
 
 def get_hidden_states(sentence):
-    """
-    回傳：
-      hidden_states : list[Tensor], 長度 = num_layers+1
-                      每個 Tensor 形狀 = [seq_len, hidden_dim]
-      tokens        : list[str]
-    """
+        """
+        Returns:
+            hidden_states : list[Tensor], length = num_layers + 1
+                                            each Tensor has shape = [seq_len, hidden_dim]
+            tokens        : list[str]
+        """
     inputs = tokenizer(sentence, return_tensors="pt").to(device)
     tokens = tokenizer.convert_ids_to_tokens(inputs["input_ids"][0].tolist())
     with torch.no_grad():
@@ -101,7 +101,7 @@ def get_hidden_states(sentence):
 
 
 def find_token_pos(tokens, target):
-    """找目標數字 token 的位置（忽略 tokenizer 加的空格前綴 Ġ / ▁）"""
+    """Find the target number token position, ignoring tokenizer space prefixes Ġ / ▁."""
     for i, t in enumerate(tokens):
         clean = t.replace("Ġ", "").replace("▁", "").strip()
         if clean == target:
@@ -116,9 +116,9 @@ def cosine_sim(v1, v2):
     ).item()
 
 # ============================================================
-# 4. 跑實驗 A
+# 4. Run Experiment A
 # ============================================================
-print("\n[步驟 2] 實驗 A：同一數字 '24'，不同語境")
+print("\n[Step 2] Experiment A: same number '24', different contexts")
 print("-" * 60)
 
 all_hs_A = []
@@ -129,7 +129,7 @@ for sent, label in zip(EXPERIMENT_A_SENTENCES, EXPERIMENT_A_LABELS):
     pos = find_token_pos(tokens, "24")
 
     if pos is None:
-        print(f"  ⚠ 找不到 '24'：{sent}")
+        print(f"  ⚠ Could not find '24': {sent}")
         print(f"    Tokens: {tokens}")
         all_hs_A.append(None)
         continue
@@ -140,9 +140,9 @@ for sent, label in zip(EXPERIMENT_A_SENTENCES, EXPERIMENT_A_LABELS):
     if num_layers is None:
         num_layers = len(hs)
 
-print(f"\n  共 {num_layers} 層（Layer 0 = embedding，Layer {num_layers-1} = 最後一層）")
+print(f"\n  Total {num_layers} layers (Layer 0 = embedding, Layer {num_layers-1} = final layer)")
 
-# 以第一個句子為基準，計算各語境 vs 基準在每層的 cosine similarity
+# Use the first sentence as the baseline and compute per-layer cosine similarity for each context
 baseline_idx_A = 0
 baseline_label_A = EXPERIMENT_A_LABELS[baseline_idx_A]
 cosine_A = {}  # {label: [sim_l0, sim_l1, ...]}
@@ -155,9 +155,9 @@ for i, (hs_vecs, label) in enumerate(zip(all_hs_A, EXPERIMENT_A_LABELS)):
     cosine_A[label] = sims
 
 # ============================================================
-# 5. 跑實驗 B
+# 5. Run Experiment B
 # ============================================================
-print("\n[步驟 3] 實驗 B：同一語境，不同數字")
+print("\n[Step 3] Experiment B: same context, different numbers")
 print("-" * 60)
 
 all_hs_B = []
@@ -171,7 +171,7 @@ for num_str, num_tok, sent, label in zip(
     pos = find_token_pos(tokens, num_tok)
 
     if pos is None:
-        print(f"  ⚠ 找不到 '{num_tok}'：{sent}")
+        print(f"  ⚠ Could not find '{num_tok}': {sent}")
         print(f"    Tokens: {tokens}")
         all_hs_B.append(None)
         continue
@@ -179,7 +179,7 @@ for num_str, num_tok, sent, label in zip(
     print(f"  ✓ pos={pos:2d} | {label:12s} | {sent[:50]}...")
     all_hs_B.append([hs[l][pos] for l in range(num_layers)])
 
-# 以 "24 hrs"（index 1）為基準
+# Use "24 hrs" (index 1) as the baseline
 baseline_idx_B = 1
 baseline_label_B = EXPERIMENT_B_LABELS[baseline_idx_B]
 cosine_B = {}
@@ -192,9 +192,9 @@ for i, (hs_vecs, label) in enumerate(zip(all_hs_B, EXPERIMENT_B_LABELS)):
     cosine_B[label] = sims
 
 # ============================================================
-# 6. 畫圖
+# 6. Plot the results
 # ============================================================
-print("\n[步驟 4] 繪製圖表...")
+print("\n[Step 4] Generating plots...")
 
 layers = list(range(num_layers))
 colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6']
@@ -203,7 +203,7 @@ markers = ['o', 's', '^', 'D', 'v']
 fig = plt.figure(figsize=(16, 13))
 gs = gridspec.GridSpec(2, 2, figure=fig, hspace=0.5, wspace=0.35)
 
-# ---- 圖 1：實驗 A 折線圖 ----
+# ---- Figure 1: Experiment A line chart ----
 ax1 = fig.add_subplot(gs[0, :])
 for idx, (label, sims) in enumerate(cosine_A.items()):
     ax1.plot(layers, sims,
@@ -226,7 +226,7 @@ ax1.legend(fontsize=9, loc='lower left', ncol=2)
 ax1.grid(True, alpha=0.3)
 ax1.set_ylim(0.4, 1.05)
 
-# ---- 圖 2：實驗 B 折線圖 ----
+# ---- Figure 2: Experiment B line chart ----
 ax2 = fig.add_subplot(gs[1, 0])
 for idx, (label, sims) in enumerate(cosine_B.items()):
     ax2.plot(layers, sims,
@@ -249,7 +249,7 @@ ax2.legend(fontsize=10)
 ax2.grid(True, alpha=0.3)
 ax2.set_ylim(0.4, 1.05)
 
-# ---- 圖 3：最後一層 pairwise similarity heatmap（實驗 A）----
+# ---- Figure 3: final-layer pairwise similarity heatmap (Experiment A) ----
 ax3 = fig.add_subplot(gs[1, 1])
 last_layer = num_layers - 1
 valid_idx = [i for i, x in enumerate(all_hs_A) if x is not None]
@@ -288,42 +288,42 @@ plt.suptitle(
 
 output_path = "numerical_context_analysis.png"
 plt.savefig(output_path, dpi=150, bbox_inches='tight')
-print(f"  圖表儲存為：{output_path}")
+print(f"  Plot saved to: {output_path}")
 plt.close()
 
 # ============================================================
-# 7. 文字摘要
+# 7. Text summary
 # ============================================================
 print("\n" + "=" * 70)
-print("數值摘要")
+print("Numerical Summary")
 print("=" * 70)
 
-print(f"\n實驗 A（基準：{baseline_label_A}）")
-print(f"  {'比較對象':25s} | {'L0':>7} | {'L8':>7} | {'L{}'.format(num_layers-1):>7}")
+print(f"\nExperiment A (baseline: {baseline_label_A})")
+print(f"  {'Comparison':25s} | {'L0':>7} | {'L8':>7} | {'L{}'.format(num_layers-1):>7}")
 print("  " + "-" * 52)
 for label, sims in cosine_A.items():
     mid = sims[8] if len(sims) > 8 else sims[len(sims)//2]
     print(f"  {label:25s} | {sims[0]:>7.4f} | {mid:>7.4f} | {sims[-1]:>7.4f}")
 
-print(f"\n實驗 B（基準：{baseline_label_B}）")
-print(f"  {'比較對象':15s} | {'L0':>7} | {'L8':>7} | {'L{}'.format(num_layers-1):>7}")
+print(f"\nExperiment B (baseline: {baseline_label_B})")
+print(f"  {'Comparison':15s} | {'L0':>7} | {'L8':>7} | {'L{}'.format(num_layers-1):>7}")
 print("  " + "-" * 42)
 for label, sims in cosine_B.items():
     mid = sims[8] if len(sims) > 8 else sims[len(sims)//2]
     print(f"  {label:15s} | {sims[0]:>7.4f} | {mid:>7.4f} | {sims[-1]:>7.4f}")
 
 print("""
-解讀方式：
-  - Layer 0 的 similarity 應接近 1.0（數字 token 的 embedding 相同）
-  - 若後面幾層 similarity 下降 → 語境正在改變數字的表示
-  - 下降越多 → 模型對語境越敏感
+How to interpret:
+    - Layer 0 similarity should be close to 1.0 (the number token embedding is the same)
+    - If similarity drops in later layers, context is changing the number representation
+    - Larger drops indicate the model is more sensitive to context
 
-  研究假設：
-  "24 hrs (flight)" vs "24 bpm (medical)" 的 similarity
-  應低於 "24 hrs (flight)" vs "24 hrs (learning)"
-  → 跨語義類別的差異 > 同語義類別的差異
+    Research hypothesis:
+    The similarity of "24 hrs (flight)" vs "24 bpm (medical)"
+    should be lower than "24 hrs (flight)" vs "24 hrs (learning)"
+    -> Cross-semantic-category differences > within-category differences
 """)
 
 print("=" * 70)
-print("完成！產出圖片：numerical_context_analysis.png")
+print("Done! Output image: numerical_context_analysis.png")
 print("=" * 70)

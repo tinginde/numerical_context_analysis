@@ -1,5 +1,5 @@
 """
-數值語境表示分析 v4
+Contextual Numerical Representation Analysis v4
 PCA Visualization + 1B vs 3B Model Comparison
 Diabetes-Related Medical Values
 
@@ -21,11 +21,11 @@ plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
 # ============================================================
-# 1. 定義 8 個醫療語境（6 個數值各）
+# 1. Define 8 medical contexts (6 values each)
 # ============================================================
 
 CONTEXTS = [
-    # --- 糖尿病核心指標 ---
+    # --- Core diabetes-related biomarkers ---
     {
         "name": "Blood Glucose (mg/dL)",
         "short": "Glucose",
@@ -86,7 +86,7 @@ CONTEXTS = [
         ],
         "normal_idx": 2,
     },
-    # --- 糖尿病常見併發症相關 ---
+    # --- Common diabetes-related complications ---
     {
         "name": "Creatinine (mg/dL)",
         "short": "Creatinine",
@@ -110,7 +110,7 @@ CONTEXTS = [
         "clinical": ["Shock", "Low Normal", "Normal", "Elevated", "Hypertension", "Crisis"],
         "normal_idx": 2,
     },
-    # --- 一般生命徵象 ---
+    # --- General vital signs ---
     {
         "name": "Heart Rate (bpm)",
         "short": "HR",
@@ -143,7 +143,7 @@ CONTEXTS = [
     },
 ]
 
-# 顏色：danger index 0-5 對應 critical-low → normal → critical-high
+# Colors: danger index 0-5 maps to critical-low -> normal -> critical-high
 DANGER_COLORS = ["#1a5276", "#3498db", "#27ae60", "#f39c12", "#e67e22", "#c0392b"]
 DANGER_LABELS = [
     "0 Critical Low",
@@ -154,7 +154,7 @@ DANGER_LABELS = [
     "5 Critical High",
 ]
 
-# Marker 形狀：8 個語境各不同
+# Marker shapes: one distinct shape for each of the 8 contexts
 CONTEXT_MARKERS = ["o", "s", "^", "D", "v", "P", "*", "X"]
 
 MODELS = [
@@ -164,21 +164,21 @@ MODELS = [
 
 
 # ============================================================
-# 2. 工具函數
+# 2. Helper functions
 # ============================================================
 
 
 def find_value_token_pos(tokens, value_str):
     """
-    找數值 token 的位置，支援整數與小數。
-    優先完整比對，找不到則退至整數部分。
+    Find the value token position, supporting both integers and decimals.
+    Prefer an exact match; if none is found, fall back to the integer part.
     """
-    # 完整比對（忽略 Ġ / ▁ 前綴）
+    # Exact match, ignoring Ġ / ▁ prefixes
     for i, t in enumerate(tokens):
         clean = t.replace("Ġ", "").replace("▁", "").strip()
         if clean == value_str:
             return i
-    # 小數退化：先找整數部分
+    # Decimal fallback: first search for the integer part
     if "." in value_str:
         int_part = value_str.split(".")[0]
         for i, t in enumerate(tokens):
@@ -189,11 +189,11 @@ def find_value_token_pos(tokens, value_str):
 
 
 def extract_all_hidden_states(contexts, tokenizer, model, device):
-    """
-    跑所有語境的所有數值，回傳：
-      data[c_idx][v_idx] = list of tensors (one tensor per layer, shape [hidden_dim])
-      num_layers: int（含 embedding 層）
-    """
+        """
+        Run all values across all contexts and return:
+            data[c_idx][v_idx] = list of tensors (one tensor per layer, shape [hidden_dim])
+            num_layers: int (including the embedding layer)
+        """
     data = [[None] * len(ctx["values"]) for ctx in contexts]
     num_layers = None
     total = sum(len(ctx["values"]) for ctx in contexts)
@@ -215,22 +215,22 @@ def extract_all_hidden_states(contexts, tokenizer, model, device):
 
             pos = find_value_token_pos(tokens, val)
             if pos is None:
-                print(f"  ⚠  [{done}/{total}] '{val}' 找不到 token，跳過。tokens={tokens[:12]}")
+                print(f"  ⚠  [{done}/{total}] Could not find token for '{val}', skipping. tokens={tokens[:12]}")
                 continue
 
             data[c_idx][v_idx] = [hs[l][pos] for l in range(num_layers)]
 
-        print(f"  [{c_idx+1}/8] {ctx['short']} 完成")
+        print(f"  [{c_idx+1}/8] {ctx['short']} complete")
 
     return data, num_layers
 
 
 def collect_layer_vectors(data, num_layers):
-    """
-    把 data[c_idx][v_idx] 整理成：
-      vectors_by_layer[l] = np.array of shape (N_valid, hidden_dim)
-      meta = list of (c_idx, v_idx) — 與 vectors_by_layer 的行對應
-    """
+        """
+        Reshape data[c_idx][v_idx] into:
+            vectors_by_layer[l] = np.array of shape (N_valid, hidden_dim)
+            meta = list of (c_idx, v_idx) corresponding to the rows in vectors_by_layer
+        """
     meta = []
     idx_map = []  # (c_idx, v_idx) in order
 
@@ -250,7 +250,7 @@ def collect_layer_vectors(data, num_layers):
 
 
 # ============================================================
-# 3. PCA scatter 子圖
+# 3. PCA scatter subplot
 # ============================================================
 
 
@@ -258,7 +258,7 @@ def draw_pca_scatter(ax, vectors_np, meta, layer_label):
     """
     vectors_np: (N, D) array
     meta: list of (c_idx, v_idx)
-    回傳 total variance explained (PC1+PC2)
+    Returns total variance explained (PC1 + PC2)
     """
     pca = PCA(n_components=2)
     coords = pca.fit_transform(vectors_np)
@@ -288,37 +288,37 @@ def draw_pca_scatter(ax, vectors_np, meta, layer_label):
 
 
 # ============================================================
-# 4. 主程式：依序載入兩個模型
+# 4. Main program: load the two models in sequence
 # ============================================================
 
 print("=" * 65)
-print("數值語境表示分析 v4  —  PCA + 1B vs 3B")
-print("8 語境 × 6 數值 = 48 資料點")
+print("Contextual Numerical Representation Analysis v4  —  PCA + 1B vs 3B")
+print("8 contexts × 6 values = 48 data points")
 print("=" * 65)
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
-    print("使用 CUDA GPU\n")
+    print("Using CUDA GPU\n")
 elif torch.backends.mps.is_available():
     device = torch.device("mps")
-    print("使用 Apple MPS\n")
+    print("Using Apple MPS\n")
 else:
     device = torch.device("cpu")
-    print("使用 CPU\n")
+    print("Using CPU\n")
 
 all_model_results = {}  # label -> {"data": ..., "num_layers": ..., "vectors_by_layer": ..., "meta": ...}
 
 for model_id, label in MODELS:
-    print(f"[{label}] 載入 {model_id}")
+    print(f"[{label}] Loading {model_id}")
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float16)
     model.to(device)
     model.eval()
-    print(f"  參數量：{model.num_parameters():,}")
+    print(f"  Parameters: {model.num_parameters():,}")
 
     data, num_layers = extract_all_hidden_states(CONTEXTS, tokenizer, model, device)
 
-    # 釋放 GPU 記憶體
+    # Release GPU memory
     del model
     torch.cuda.empty_cache() if torch.cuda.is_available() else None
     gc.collect()
@@ -329,16 +329,16 @@ for model_id, label in MODELS:
         "vectors_by_layer": vectors_by_layer,
         "meta": meta,
     }
-    print(f"  完成，{num_layers} 層，有效點 {len(meta)}/48\n")
+    print(f"  Done, {num_layers} layers, valid points {len(meta)}/48\n")
 
 # ============================================================
-# 5. 繪圖
+# 5. Plotting
 #    Layout:
 #      Row 0: 1B — PCA @ Layer 0 / mid / last
 #      Row 1: 3B — PCA @ Layer 0 / mid / last
-#      Row 2: variance-across-layers 折線 + 圖例
+#      Row 2: variance-across-layers line plot + legend
 # ============================================================
-print("繪製圖表...")
+print("Generating plots...")
 
 fig = plt.figure(figsize=(20, 18))
 outer_gs = gridspec.GridSpec(
@@ -353,7 +353,7 @@ for row_i, label in enumerate(["1B", "3B"]):
     vectors_by_layer = info["vectors_by_layer"]
     meta = info["meta"]
 
-    # 三個代表層：embedding / 中間 / 最後
+    # Three representative layers: embedding / middle / final
     l_early = 0
     l_mid = num_layers // 2
     l_late = num_layers - 1
@@ -370,11 +370,11 @@ for row_i, label in enumerate(["1B", "3B"]):
     for col_i, (l_idx, l_label) in enumerate(chosen):
         ax = fig.add_subplot(inner_gs[0, col_i])
         draw_pca_scatter(ax, vectors_by_layer[l_idx], meta, l_label)
-        # 在最左欄的 ylabel 加上模型標籤
+        # Add the model label to the ylabel in the leftmost column
         if col_i == 0:
             ax.set_ylabel(f"【{label} Model — {num_layers} layers】\nPC2", fontsize=9, fontweight="bold")
 
-    # 計算所有層的 variance（用於下方折線）
+    # Compute variance for all layers for the bottom line plot
     var_all = []
     for l in range(num_layers):
         pca_tmp = PCA(n_components=2)
@@ -382,18 +382,18 @@ for row_i, label in enumerate(["1B", "3B"]):
         var_all.append(sum(pca_tmp.explained_variance_ratio_) * 100)
     variance_curves[label] = var_all
 
-# ---- 下方：variance 折線 + 圖例 ----
+# ---- Bottom: variance line plot + legend ----
 bottom_gs = gridspec.GridSpecFromSubplotSpec(
     1, 2, subplot_spec=outer_gs[2], wspace=0.38
 )
 
-# 左：variance explained 隨層數變化（1B vs 3B）
+# Left: variance explained across layers (1B vs 3B)
 ax_var = fig.add_subplot(bottom_gs[0])
 model_colors = {"1B": "#2980b9", "3B": "#e74c3c"}
 
 for label, var_all in variance_curves.items():
     n = len(var_all)
-    x = np.linspace(0, 100, n)  # 統一化為 0-100% 深度，方便對齊
+    x = np.linspace(0, 100, n)  # Normalize depth to 0-100% for alignment
     ax_var.plot(
         x,
         var_all,
@@ -416,7 +416,7 @@ ax_var.legend(fontsize=9)
 ax_var.grid(True, alpha=0.3)
 ax_var.set_xlim(0, 100)
 
-# 右：圖例（顏色 = 危險程度，形狀 = 語境）
+# Right: legend (color = danger level, shape = context)
 ax_leg = fig.add_subplot(bottom_gs[1])
 ax_leg.axis("off")
 
@@ -467,7 +467,7 @@ plt.suptitle(
 os.makedirs("results", exist_ok=True)
 out_path = "results/numerical_context_analysis_v4.png"
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
-print(f"圖表儲存：{out_path}")
+print(f"Plot saved to: {out_path}")
 plt.close()
 
-print("\n完成！")
+print("\nDone!")

@@ -1,19 +1,21 @@
 """
-數值語境表示分析 v2
-Contextual Numerical Representation Analysis
+Contextual Numerical Representation Analysis v2
 =============================================
-新增實驗 C：相同語境，但數字代表截然不同的臨床/物理意義
-核心問題：LLM 能不能區分「同一語境下，具有不同危險程度的數字」？
+Adds Experiment C: the same context, but numbers with very different
+clinical or physical meanings.
 
-五個醫療語境：
-  1. 血壓 (mmHg)       40 / 79 / 120 / 180
-  2. 體溫 (°C)         25 / 35 / 37 / 41
-  3. 心跳 (bpm)        30 / 55 / 75 / 180
-  4. 血糖 (mg/dL)      40 / 90 / 180 / 400
-  5. 呼吸頻率 (次/分)   4 / 16 / 25 / 40
+Core question: can the LLM distinguish numbers with different danger
+levels within the same context?
 
-使用方式：放入 llm-internals-tutorial 資料夾執行
-  python numerical_context_analysis_v2.py
+Five medical contexts:
+    1. Blood Pressure (mmHg)           40 / 79 / 120 / 180
+    2. Body Temperature (°C)           25 / 35 / 37 / 41
+    3. Heart Rate (bpm)                30 / 55 / 75 / 180
+    4. Blood Glucose (mg/dL)           40 / 90 / 180 / 400
+    5. Respiratory Rate (breaths/min)  4 / 16 / 25 / 40
+
+Usage: place this file in your llm-internals-tutorial folder and run:
+    python numerical_context_analysis_v2.py
 """
 
 import torch
@@ -27,26 +29,26 @@ plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'SimHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
 print("=" * 70)
-print("數值語境表示分析 v2")
-print("實驗 C：相同語境，臨床意義不同的數字")
+print("Contextual Numerical Representation Analysis v2")
+print("Experiment C: same context, numbers with different clinical meanings")
 print("=" * 70)
 
 # ============================================================
-# 1. 載入模型
+# 1. Load the model
 # ============================================================
-print("\n[步驟 1] 載入模型...")
+print("\n[Step 1] Loading model...")
 
 MODEL_NAME = "meta-llama/Llama-3.2-1B-Instruct"
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
-    print("  使用 CUDA GPU")
+    print("  Using CUDA GPU")
 elif torch.backends.mps.is_available():
     device = torch.device("mps")
-    print("  使用 Apple MPS")
+    print("  Using Apple MPS")
 else:
     device = torch.device("cpu")
-    print("  使用 CPU")
+    print("  Using CPU")
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForCausalLM.from_pretrained(
@@ -55,10 +57,10 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 model.to(device)
 model.eval()
-print(f"  模型載入完成（{model.num_parameters():,} 參數）")
+print(f"  Model loaded ({model.num_parameters():,} parameters)")
 
 # ============================================================
-# 2. 定義五個醫療語境
+# 2. Define five medical contexts
 # ============================================================
 
 EXPERIMENT_C = [
@@ -68,7 +70,7 @@ EXPERIMENT_C = [
         "template": "The patient's blood pressure was {} mmHg.",
         "values":   ["40",  "79",         "120",    "180"],
         "clinical": ["Crisis Low", "Hypotension", "Normal", "Hypertensive Crisis"],
-        "normal_idx": 2,   # 120 為基準
+        "normal_idx": 2,   # 120 is the baseline
     },
     {
         "name": "Body Temperature (°C)",
@@ -76,7 +78,7 @@ EXPERIMENT_C = [
         "template": "The patient's body temperature was {} degrees Celsius.",
         "values":   ["25",              "35",             "37",     "41"],
         "clinical": ["Severe Hypothermia", "Mild Hypothermia", "Normal", "High Fever"],
-        "normal_idx": 2,   # 37 為基準
+        "normal_idx": 2,   # 37 is the baseline
     },
     {
         "name": "Heart Rate (bpm)",
@@ -84,7 +86,7 @@ EXPERIMENT_C = [
         "template": "The patient's heart rate was {} beats per minute.",
         "values":   ["30",               "55",        "75",     "180"],
         "clinical": ["Severe Bradycardia", "Low Normal", "Normal", "Severe Tachycardia"],
-        "normal_idx": 2,   # 75 為基準
+        "normal_idx": 2,   # 75 is the baseline
     },
     {
         "name": "Blood Glucose (mg/dL)",
@@ -92,7 +94,7 @@ EXPERIMENT_C = [
         "template": "The patient's blood glucose level was {} milligrams per deciliter.",
         "values":   ["40",                "90",     "180",          "400"],
         "clinical": ["Hypoglycemic Crisis", "Normal", "Hyperglycemia", "DKA Risk"],
-        "normal_idx": 1,   # 90 為基準
+        "normal_idx": 1,   # 90 is the baseline
     },
     {
         "name": "Respiratory Rate (breaths/min)",
@@ -100,12 +102,12 @@ EXPERIMENT_C = [
         "template": "The patient's respiratory rate was {} breaths per minute.",
         "values":   ["4",          "16",     "25",         "40"],
         "clinical": ["Near Apnea", "Normal", "Tachypnea", "Respiratory Crisis"],
-        "normal_idx": 1,   # 16 為基準
+        "normal_idx": 1,   # 16 is the baseline
     },
 ]
 
 # ============================================================
-# 3. 工具函數
+# 3. Helper functions
 # ============================================================
 
 def get_hidden_states(sentence):
@@ -118,7 +120,7 @@ def get_hidden_states(sentence):
 
 
 def find_token_pos(tokens, target):
-    """找目標數字 token 的位置（忽略前綴 Ġ / ▁）"""
+    """Find the target number token position, ignoring Ġ / ▁ prefixes."""
     for i, t in enumerate(tokens):
         clean = t.replace("Ġ", "").replace("▁", "").strip()
         if clean == target:
@@ -134,7 +136,7 @@ def cosine_sim(v1, v2):
 
 
 def run_group(group):
-    """跑一個語境的所有數字，回傳每個數字在所有層的向量"""
+    """Run all numbers for one context and return each number's vector at every layer."""
     all_hs = []
     num_layers_found = None
 
@@ -146,7 +148,7 @@ def run_group(group):
         if pos is None:
             pos = find_token_pos(tokens, val[:2])
         if pos is None:
-            print(f"  ⚠ 找不到 '{val}'，tokens={tokens}")
+            print(f"  ⚠ Could not find '{val}', tokens={tokens}")
             all_hs.append(None)
             continue
 
@@ -157,16 +159,16 @@ def run_group(group):
     return all_hs, num_layers_found
 
 # ============================================================
-# 4. 執行所有實驗
+# 4. Run all experiments
 # ============================================================
-print("\n[步驟 2] 執行實驗 C...")
+print("\n[Step 2] Running Experiment C...")
 
 results_C = []
 num_layers = None
 
 for group in EXPERIMENT_C:
     print(f"\n  {group['name']}")
-    print(f"  {'數值':8s} | {'臨床意義':25s} | 句子")
+    print(f"  {'Value':8s} | {'Clinical Meaning':25s} | Sentence")
     print("  " + "-" * 65)
     for val, clin in zip(group["values"], group["clinical"]):
         sent = group["template"].format(val)
@@ -177,29 +179,29 @@ for group in EXPERIMENT_C:
     if num_layers is None and nl is not None:
         num_layers = nl
 
-print(f"\n  共 {num_layers} 層（Layer 0 = embedding，Layer {num_layers-1} = 最後一層）")
+print(f"\n  Total {num_layers} layers (Layer 0 = embedding, Layer {num_layers-1} = final layer)")
 
 # ============================================================
-# 5. 畫圖
+# 5. Plot the results
 # ============================================================
-print("\n[步驟 3] 繪製圖表...")
+print("\n[Step 3] Generating plots...")
 
 layers = list(range(num_layers))
 
-# 顏色代表「偏離正常的程度」
-# 最危險 → 深色，接近正常 → 淺色，正常 → 綠
+# Colors indicate how far each value is from normal
+# Most dangerous -> dark, closer to normal -> light, normal -> green
 COLOR_MAP = {
-    0: '#1a5276',   # 危險低（深藍）
-    1: '#7fb3d3',   # 偏低（淺藍）
-    2: '#27ae60',   # 正常（綠）
-    3: '#e74c3c',   # 危險高（紅）
+    0: '#1a5276',   # Dangerously low (dark blue)
+    1: '#7fb3d3',   # Mildly low (light blue)
+    2: '#27ae60',   # Normal (green)
+    3: '#e74c3c',   # Dangerously high (red)
 }
 MARKERS = ['v', 's', 'o', '^']
 
 fig = plt.figure(figsize=(22, 20))
 outer_gs = gridspec.GridSpec(3, 1, figure=fig, hspace=0.5)
 
-# --- 上半部：五個語境的折線圖（2 列） ---
+# --- Top half: line charts for the five contexts (2 rows) ---
 top_gs = gridspec.GridSpecFromSubplotSpec(
     2, 3, subplot_spec=outer_gs[0:2], hspace=0.55, wspace=0.38
 )
@@ -241,7 +243,7 @@ for g_idx, (group, all_hs) in enumerate(zip(EXPERIMENT_C, results_C)):
     ax.grid(True, alpha=0.25)
     ax.set_ylim(0.25, 1.08)
 
-# 第六格放說明文字
+# Use the sixth panel for explanatory notes
 ax_note = fig.add_subplot(top_gs[1, 2])
 ax_note.axis('off')
 ax_note.text(0.05, 0.95,
@@ -261,7 +263,7 @@ ax_note.text(0.05, 0.95,
     bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.8)
 )
 
-# --- 下半部：Summary bar chart + monotonicity scatter ---
+# --- Bottom half: summary bar chart + monotonicity scatter ---
 bottom_gs = gridspec.GridSpecFromSubplotSpec(
     1, 2, subplot_spec=outer_gs[2], wspace=0.4
 )
@@ -365,14 +367,14 @@ plt.suptitle(
 
 output_path = "numerical_context_analysis_v2.png"
 plt.savefig(output_path, dpi=150, bbox_inches='tight')
-print(f"  圖表儲存為：{output_path}")
+print(f"  Plot saved to: {output_path}")
 plt.close()
 
 # ============================================================
-# 6. 文字摘要
+# 6. Text summary
 # ============================================================
 print("\n" + "=" * 70)
-print("數值摘要：實驗 C（最後一層，以正常值為基準）")
+print("Numerical Summary: Experiment C (final layer, normal value as baseline)")
 print("=" * 70)
 
 for group, all_hs in zip(EXPERIMENT_C, results_C):
@@ -382,7 +384,7 @@ for group, all_hs in zip(EXPERIMENT_C, results_C):
         continue
 
     print(f"\n{group['name']}  (baseline = {normal_val})")
-    print(f"  {'數值':8s} | {'臨床意義':25s} | {'L0':>7} | {'L{}'.format(num_layers//2):>7} | {'L{}'.format(num_layers-1):>7}")
+    print(f"  {'Value':8s} | {'Clinical Meaning':25s} | {'L0':>7} | {'L{}'.format(num_layers//2):>7} | {'L{}'.format(num_layers-1):>7}")
     print("  " + "-" * 62)
 
     for v_idx, (val, clin, hs_vecs) in enumerate(
@@ -397,21 +399,21 @@ for group, all_hs in zip(EXPERIMENT_C, results_C):
         print(f"  {val:8s} | {clin:25s} | {l0:>7.4f} | {lM:>7.4f} | {lN:>7.4f}{tag}")
 
 print("""
-三個核心問題：
+Three core questions:
 
-  Q1. 危險值 vs 正常值的 similarity 有多低？
-      → 越低代表 LLM 的表示越能區分「危險」vs「正常」
+  Q1. How low is the similarity between dangerous values and normal values?
+      -> Lower values mean the LLM representation better distinguishes danger vs normal
 
-  Q2. 是否呈現 U 型？
-      → 正常值 similarity = 1.0
-      → 兩端的危險值 similarity 應該都低於靠近正常的值
-      → 如果是 → LLM 的表示空間有「臨床有序性」
+  Q2. Does it show a U-shape?
+      -> Normal-value similarity = 1.0
+      -> The dangerous values at both ends should be lower than values closer to normal
+      -> If so, the LLM representation space has clinical ordering
 
-  Q3. 哪個醫療語境 LLM 最敏感？哪個最不敏感？
-      → 比較五個語境最後一層的 similarity 下降幅度
-      → 這就是你 paper 的 section 4 findings 🎯
+  Q3. Which medical context is the LLM most sensitive to, and which is it least sensitive to?
+      -> Compare the last-layer similarity drop across the five contexts
+      -> That becomes the section 4 findings for your paper
 """)
 
 print("=" * 70)
-print("完成！產出圖片：numerical_context_analysis_v2.png")
+print("Done! Output image: numerical_context_analysis_v2.png")
 print("=" * 70)

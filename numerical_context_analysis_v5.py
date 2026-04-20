@@ -1,19 +1,19 @@
 """
-數值語境表示分析 v5 — 行為層評估
+Contextual Numerical Representation Analysis v5 — Behavioral Evaluation
 Behavioral Evaluation: Accuracy / Consistency / Risk Alignment
 
-設計矩陣：
-  3 輸出格式 (numeric / category / hybrid)
-× 4 模型角色 (zero-shot / role-prompting / instruction-constrained / forced-answer)
-× 2 模型大小 (1B / 3B)
-× 48 pairs  (8 語境 × 6 數值)
-= 1152 次推論
+Design matrix:
+    3 output formats (numeric / category / hybrid)
+× 4 model roles (zero-shot / role-prompting / instruction-constrained / forced-answer)
+× 2 model sizes (1B / 3B)
+× 48 pairs (8 contexts × 6 values)
+= 1152 total inferences
 
-修改說明：
-  [Mod 1] category 改用 biomarker-specific 臨床標籤（非通用量表）
-           → ground truth 更準確，測試真實臨床知識
-  [Mod 2] 新增 forced_answer role：明確告知研究情境、非臨床診療
-           → 隔離 1B 拒絕行為，讓結果可比
+Modification notes:
+    [Mod 1] category now uses biomarker-specific clinical labels instead of a generic scale
+                     -> more accurate ground truth, better test of real clinical knowledge
+    [Mod 2] add the forced_answer role to explicitly frame this as research, not clinical care
+                     -> isolates 1B refusal behavior so results are comparable
 """
 
 import gc
@@ -33,10 +33,10 @@ plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
 # ============================================================
-# 1. 語境定義（8 個語境 × 6 數值）
-#    clinical 欄位 = [Mod 1] biomarker-specific 臨床標籤
-#                   index 0 = most critical low
-#                   index 5 = most critical high
+# 1. Context definitions (8 contexts × 6 values)
+#    clinical field = [Mod 1] biomarker-specific clinical labels
+#                     index 0 = most critical low
+#                     index 5 = most critical high
 # ============================================================
 
 CONTEXTS = [
@@ -107,11 +107,11 @@ CONTEXTS = [
 ]
 
 # ============================================================
-# 2. 實驗條件
+# 2. Experimental conditions
 # ============================================================
 
-# --- 輸出格式 ---
-# [Mod 1] category 的 {labels} 由 build_prompt 動態填入 biomarker-specific 標籤
+# --- Output formats ---
+# [Mod 1] category {labels} are dynamically filled by build_prompt using biomarker-specific labels
 TASK_TEMPLATES = {
     "numeric": (
         "Clinical assessment task:\n"
@@ -144,7 +144,7 @@ TASK_TEMPLATES = {
     ),
 }
 
-# --- 模型角色（含 [Mod 2] forced_answer）---
+# --- Model roles (including [Mod 2] forced_answer) ---
 SYSTEM_PROMPTS = {
     "zero_shot": None,
 
@@ -158,7 +158,7 @@ SYSTEM_PROMPTS = {
         "Do not make assumptions or rely on contextual priors beyond the given number."
     ),
 
-    # [Mod 2] forced_answer：隔離拒絕行為，尤其針對 1B numeric
+    # [Mod 2] forced_answer: isolate refusal behavior, especially for 1B numeric output
     "forced_answer": (
         "CONTEXT: This is a controlled academic research experiment studying how language "
         "models process numerical medical information. This is NOT a clinical decision-support "
@@ -175,11 +175,11 @@ MODELS = [
 ]
 
 # ============================================================
-# 3. Prompt 建構
+# 3. Prompt construction
 # ============================================================
 
 def build_labels_str(ctx):
-    """把 biomarker-specific 臨床標籤組成 ' / ' 分隔字串。"""
+    """Join biomarker-specific clinical labels into a ' / ' separated string."""
     return " / ".join(ctx["clinical"])
 
 
@@ -201,7 +201,7 @@ def build_prompt(ctx, val, fmt_key, role_key, tokenizer):
     )
 
 # ============================================================
-# 4. 生成
+# 4. Generation
 # ============================================================
 
 def generate_response(model, tokenizer, prompt, device, max_new_tokens=40):
@@ -218,8 +218,8 @@ def generate_response(model, tokenizer, prompt, device, max_new_tokens=40):
     return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
 
 # ============================================================
-# 5. 解析
-#    [Mod 1] parse_category_ctx：依語境用 biomarker-specific 標籤比對
+# 5. Parsing
+#    [Mod 1] parse_category_ctx: match biomarker-specific labels by context
 # ============================================================
 
 def parse_numeric(text):
@@ -285,7 +285,7 @@ def parse_output(raw_text, fmt_key, ctx):
     return result
 
 # ============================================================
-# 6. 推論主迴圈
+# 6. Main inference loop
 # ============================================================
 
 def run_experiment(model, tokenizer, device, model_label):
@@ -311,8 +311,8 @@ def run_experiment(model, tokenizer, device, model_label):
                     "condition":    condition,
                     "context":      ctx["short"],
                     "value":        val,
-                    "v_idx":        v_idx,        # 0 = most critical low … 5 = most critical high
-                    "ground_truth": v_idx,        # same: ordinal danger index
+                    "v_idx":        v_idx,        # 0 = most critical low ... 5 = most critical high
+                    "ground_truth": v_idx,        # Same ordinal danger index
                     "gt_label":     ctx["clinical"][v_idx],   # [Mod 1] biomarker-specific label
                     "raw_output":   raw,
                     **parsed,
@@ -324,7 +324,7 @@ def run_experiment(model, tokenizer, device, model_label):
     return rows
 
 # ============================================================
-# 7. 指標計算
+# 7. Metric computation
 # ============================================================
 
 def pred_column(fmt_key):
@@ -388,10 +388,10 @@ def compute_metrics(df):
     return pd.DataFrame(records)
 
 # ============================================================
-# 8. 繪圖
+# 8. Plotting
 # ============================================================
 
-# 12 條件：3 formats × 4 roles
+# 12 conditions: 3 formats × 4 roles
 CONDITIONS_ORDERED = [
     "numeric__zero_shot",
     "numeric__role_prompting",
@@ -481,7 +481,7 @@ def _bar_fig(metrics_df, metric_col, ylabel, title, out_path,
     plt.tight_layout()
     plt.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close()
-    print(f"  儲存：{out_path}")
+    print(f"  Saved: {out_path}")
 
 
 def plot_parse_rate(metrics_df, out_path):
@@ -539,7 +539,7 @@ def plot_hybrid_consistency(metrics_df, out_path):
     plt.tight_layout()
     plt.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close()
-    print(f"  儲存：{out_path}")
+    print(f"  Saved: {out_path}")
 
 
 # ============================================================
@@ -547,21 +547,21 @@ def plot_hybrid_consistency(metrics_df, out_path):
 # ============================================================
 
 print("=" * 65)
-print("數值語境表示分析 v5 — 行為層評估（修改版）")
-print("3 格式 × 4 角色 × 2 模型 × 48 pairs = 1152 次推論")
-print("[Mod 1] Category: biomarker-specific 臨床標籤")
-print("[Mod 2] 新增 forced_answer role（隔離拒絕行為）")
+print("Contextual Numerical Representation Analysis v5 — Behavioral Evaluation (Revised)")
+print("3 formats × 4 roles × 2 models × 48 pairs = 1152 inferences")
+print("[Mod 1] Category: biomarker-specific clinical labels")
+print("[Mod 2] Added forced_answer role (isolates refusal behavior)")
 print("=" * 65)
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
-    print("使用 CUDA GPU\n")
+    print("Using CUDA GPU\n")
 elif torch.backends.mps.is_available():
     device = torch.device("mps")
-    print("使用 Apple MPS\n")
+    print("Using Apple MPS\n")
 else:
     device = torch.device("cpu")
-    print("使用 CPU\n")
+    print("Using CPU\n")
 
 os.makedirs("results", exist_ok=True)
 RAW_CSV     = "results/v5_raw.csv"
@@ -579,36 +579,36 @@ for model_id, model_label in MODELS:
     )
     model.to(device)
     model.eval()
-    print(f"  參數量：{model.num_parameters():,}\n")
+    print(f"  Parameters: {model.num_parameters():,}\n")
 
     rows = run_experiment(model, tokenizer, device, model_label)
     all_rows.extend(rows)
 
-    # 每個模型跑完即存（防 crash）
+    # Save after each model finishes to guard against crashes
     pd.DataFrame(all_rows).to_csv(RAW_CSV, index=False, encoding="utf-8-sig")
-    print(f"\n  ✓ 原始結果儲存：{RAW_CSV}")
+    print(f"\n  ✓ Raw results saved: {RAW_CSV}")
 
     del model
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
     gc.collect()
 
-# --- 計算指標 ---
+# --- Compute metrics ---
 df_raw     = pd.read_csv(RAW_CSV)
 df_metrics = compute_metrics(df_raw)
 df_metrics.to_csv(METRICS_CSV, index=False, encoding="utf-8-sig")
-print(f"\n✓ 指標儲存：{METRICS_CSV}")
+print(f"\n✓ Metrics saved: {METRICS_CSV}")
 print(df_metrics[["model", "format", "role",
                    "accuracy", "spearman_rho", "risk_f1",
                    "parse_rate"]].to_string(index=False))
 
-# --- 繪圖 ---
-print("\n繪製圖表...")
+# --- Plot figures ---
+print("\nGenerating plots...")
 
 _bar_fig(
     df_metrics, "accuracy",
     ylabel="Accuracy  (output index matches ground-truth danger level)",
-    title="【Accuracy】行為輸出是否分類正確？\n"
+    title="[Accuracy] Is the behavioral output classified correctly?\n"
           "Llama 1B vs 3B  |  [Mod 1] Category uses biomarker-specific labels  "
           "|  chance = 1/6 ≈ 0.17",
     out_path="results/v5_accuracy.png",
@@ -620,8 +620,8 @@ _bar_fig(
 _bar_fig(
     df_metrics, "spearman_rho",
     ylabel="Spearman ρ  (monotonicity within each context)",
-    title="【Consistency】輸出隨數值變動是否單調一致？\n"
-          "Llama 1B vs 3B  |  ρ = 1 → 完全單調  |  ρ = 0 → 隨機",
+        title="[Consistency] Does the output change monotonically with the value?\n"
+            "Llama 1B vs 3B  |  ρ = 1 -> perfectly monotonic  |  ρ = 0 -> random",
     out_path="results/v5_consistency.png",
     ylim=(-0.3, 1.15),
     hline=0,
@@ -631,7 +631,7 @@ _bar_fig(
 _bar_fig(
     df_metrics, "risk_f1",
     ylabel="F1 Score  (critical-low / critical-high detection)",
-    title="【Risk Alignment】極端危險值是否被正確識別？\n"
+    title="[Risk Alignment] Are extremely dangerous values identified correctly?\n"
           "Llama 1B vs 3B  |  Binary F1 for v_idx ∈ {0, 5}",
     out_path="results/v5_risk_alignment.png",
     ylim=(0, 1.15),
@@ -641,7 +641,7 @@ plot_parse_rate(df_metrics, out_path="results/v5_parse_rate.png")
 plot_hybrid_consistency(df_metrics, out_path="results/v5_hybrid_consistency.png")
 
 print("\n" + "=" * 55)
-print("完成！輸出檔案：")
+print("Done! Output files:")
 for f in [RAW_CSV, METRICS_CSV,
           "results/v5_accuracy.png",
           "results/v5_consistency.png",
