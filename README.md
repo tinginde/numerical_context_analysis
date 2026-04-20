@@ -30,11 +30,11 @@ This project investigates the **Representation–Behavior Gap** in LLM numerical
 
 | Script | Experiment | Description |
 |--------|-----------|-------------|
-| `v1.py` | Exp A & B | Cross-context and cross-magnitude hidden state analysis. Same number "24" across five semantic contexts (Exp A); same sentence with values 2.4, 24, 240 (Exp B). LLaMA 3.2-1B. |
-| `v2.py` | Exp C (1B) | Medical severity discrimination. Five contexts × four severity levels. Cosine similarity + PCA. LLaMA 3.2-1B. |
-| `v3.py` | Exp C (3B) | Same as v2, run on LLaMA 3.2-3B for scale comparison. |
-| `v4.py` | Exp D (PCA) | PCA visualization of hidden states across 8 medical contexts × 6 severity levels. Both 1B and 3B. |
-| `v5.py` | Exp E (Behavior) | Output-level behavioral evaluation. Factorial design: 3 output formats × 4 prompting strategies × 2 models × 8 contexts × 6 severity values = 1,152 inferences. Metrics: accuracy, Spearman ρ, Risk F1, parse rate. |
+| `numerical_context_analysis_v1.py` | Exp A & B | Cross-context and cross-magnitude hidden state analysis. Same number "24" across five semantic contexts (Exp A); same sentence with values 2.4, 24, 240 (Exp B). LLaMA 3.2-1B. |
+| `numerical_context_analysis_v2.py` | Exp C (1B) | Medical severity discrimination. Five contexts × four severity levels. Per-layer cosine similarity and final-layer summaries. LLaMA 3.2-1B. |
+| `numerical_context_analysis_v3.py` | Exp C (3B) | Same as v2, run on LLaMA 3.2-3B for scale comparison. |
+| `numerical_context_analysis_v4.py` | Exp D (PCA) | PCA visualization of hidden states across 8 medical contexts × 6 severity levels. Both 1B and 3B. |
+| `numerical_context_analysis_v5.py` | Exp E (Behavior) | Output-level behavioral evaluation. Factorial design: 3 output formats × 4 prompting strategies × 2 models × 8 contexts × 6 severity values = 1,152 inferences. Metrics: accuracy, Spearman ρ, Risk F1, parse rate. |
 
 ---
 
@@ -68,8 +68,13 @@ numerical_context_analysis/
 ├── numerical_context_analysis_v3.py   # Exp C: medical severity, LLaMA 3B
 ├── numerical_context_analysis_v4.py   # Exp D: PCA visualization
 ├── numerical_context_analysis_v5.py   # Exp E: behavioral evaluation
+├── v5_generate_analysis.py            # Post-hoc analysis for Exp E outputs
 ├── requirements.txt
-├── results/                           # Generated figures and output data
+├── results/
+│   ├── exp_A_B/                       # Exp A & B figures
+│   ├── exp_C/                         # Exp C figures (1B and 3B)
+│   ├── exp_D/                         # Exp D figures
+│   └── exp_E/                         # Exp E figures, metrics CSV, raw CSV
 └── README.md
 ```
 
