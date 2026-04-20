@@ -97,8 +97,3 @@ in Large Language Models: Preliminary Experimental Report. Unpublished manuscrip
 GitHub: https://github.com/tinginde/numerical_context_analysis
 ```
 
----
-
-## License
-
-MIT
