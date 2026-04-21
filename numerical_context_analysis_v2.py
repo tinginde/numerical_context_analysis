@@ -24,6 +24,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import torch.nn.functional as F
+from matplotlib.lines import Line2D
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'SimHei', 'DejaVu Sans']
@@ -189,15 +190,32 @@ print("\n[Step 3] Generating plots...")
 
 layers = list(range(num_layers))
 
-# Colors indicate how far each value is from normal
-# Most dangerous -> dark, closer to normal -> light, normal -> green
-COLOR_MAP = {
-    0: '#1a5276',   # Dangerously low (dark blue)
-    1: '#7fb3d3',   # Mildly low (light blue)
-    2: '#27ae60',   # Normal (green)
-    3: '#e74c3c',   # Dangerously high (red)
+# Colors indicate semantic position relative to each context's normal value.
+SEMANTIC_STYLES = {
+    "far_low":  {"color": '#1a5276', "label": "Far Low"},
+    "low_side": {"color": '#7fb3d3', "label": "Low-side"},
+    "normal":   {"color": '#27ae60', "label": "Normal (=1.0)"},
+    "high_side": {"color": '#f39c12', "label": "High-side"},
+    "far_high": {"color": '#e74c3c', "label": "Far High"},
 }
 MARKERS = ['v', 's', 'o', '^']
+
+
+def get_value_semantic(group, value_idx):
+    normal_idx = group["normal_idx"]
+    if value_idx == normal_idx:
+        return "normal"
+    if value_idx < normal_idx:
+        return "far_low" if value_idx == 0 else "low_side"
+    return "far_high" if value_idx == len(group["values"]) - 1 else "high_side"
+
+
+def get_value_color(group, value_idx):
+    return SEMANTIC_STYLES[get_value_semantic(group, value_idx)]["color"]
+
+
+def get_relative_position(group, value_idx):
+    return value_idx - group["normal_idx"]
 
 fig = plt.figure(figsize=(22, 20))
 outer_gs = gridspec.GridSpec(3, 1, figure=fig, hspace=0.5)
@@ -224,7 +242,7 @@ for g_idx, (group, all_hs) in enumerate(zip(EXPERIMENT_C, results_C)):
             continue
         sims = [cosine_sim(all_hs[normal_idx][l], hs_vecs[l])
                 for l in range(num_layers)]
-        color = COLOR_MAP.get(v_idx, '#7f8c8d')
+        color = get_value_color(group, v_idx)
         lw = 2.5 if v_idx == normal_idx else 1.8
         ls = '--' if v_idx == normal_idx else '-'
         ax.plot(layers, sims,
@@ -250,12 +268,16 @@ ax_note.axis('off')
 ax_note.text(0.05, 0.95,
     "How to read:\n\n"
     "• Each line = one numerical value\n"
-    "• Baseline (dashed) = Normal value\n"
+    "• Baseline (dashed) = context-specific normal value\n"
     "• Y-axis = cosine similarity to normal\n\n"
+    "Color rule:\n"
+    "• Blue tones = below normal\n"
+    "• Green = normal\n"
+    "• Orange/red = above normal\n\n"
     "Key question:\n"
-    "Do 'danger' values (dark blue / red)\n"
-    "have LOWER similarity to 'normal'\n"
-    "than 'mild' values (light colors)?\n\n"
+    "Do values farther from each context's\n"
+    "normal baseline have LOWER similarity\n"
+    "than values closer to normal?\n\n"
     "If yes → LLM's representation\n"
     "is sensitive to clinical severity!",
     transform=ax_note.transAxes,
@@ -277,33 +299,28 @@ n_groups = len(EXPERIMENT_C)
 bar_width = 0.18
 x = np.arange(n_groups)
 
-bar_colors = list(COLOR_MAP.values())
-bar_legend_labels = ["Danger Low", "Low/Mild", "Normal (=1.0)", "High/Danger"]
+legend_order = ["far_low", "low_side", "normal", "high_side", "far_high"]
 
-for v_idx in range(4):
-    bar_vals = []
-    x_pos = []
-    for g_idx, (group, all_hs) in enumerate(zip(EXPERIMENT_C, results_C)):
-        if v_idx >= len(group["values"]):
-            continue
-        normal_idx = group["normal_idx"]
-        if all_hs[normal_idx] is None or all_hs[v_idx] is None:
-            continue
-        sim = cosine_sim(all_hs[normal_idx][-1], all_hs[v_idx][-1])
-        bar_vals.append(sim)
-        x_pos.append(g_idx + (v_idx - 1.5) * bar_width)
+for g_idx, (group, all_hs) in enumerate(zip(EXPERIMENT_C, results_C)):
+    normal_idx = group["normal_idx"]
+    if all_hs[normal_idx] is None:
+        continue
 
-    if bar_vals:
-        ax_bar.bar(x_pos, bar_vals,
+    for v_idx, (val, hs_vecs) in enumerate(zip(group["values"], all_hs)):
+        if hs_vecs is None:
+            continue
+        sim = cosine_sim(all_hs[normal_idx][-1], hs_vecs[-1])
+        x_pos = g_idx + get_relative_position(group, v_idx) * bar_width
+        color = get_value_color(group, v_idx)
+
+        ax_bar.bar(x_pos, sim,
                    width=bar_width,
-                   color=bar_colors[v_idx],
+                   color=color,
                    alpha=0.88,
-                   label=bar_legend_labels[v_idx],
                    edgecolor='white',
                    linewidth=0.5)
-        for xp, yv in zip(x_pos, bar_vals):
-            ax_bar.text(xp, yv + 0.004, f"{yv:.2f}",
-                        ha='center', va='bottom', fontsize=6.5)
+        ax_bar.text(x_pos, sim + 0.004, f"{sim:.2f}",
+                    ha='center', va='bottom', fontsize=6.5)
 
 ax_bar.axhline(y=1.0, color='gray', linestyle='--', alpha=0.4)
 ax_bar.set_xticks(range(n_groups))
@@ -311,10 +328,16 @@ ax_bar.set_xticklabels(group_names, fontsize=12)
 ax_bar.set_ylabel("Cosine Similarity to Normal (Last Layer)", fontsize=10)
 ax_bar.set_title(
     "Summary: How Far is Each Value from 'Normal' in LLM's Internal Space?\n"
-    "(Last Layer — Lower bar = LLM treats value as more different from normal)",
+    "(Last Layer — colors are assigned relative to each context-specific normal value)",
     fontsize=10
 )
-ax_bar.legend(fontsize=9)
+bar_handles = [
+    Line2D([0], [0], marker='s', color='w',
+           markerfacecolor=SEMANTIC_STYLES[key]["color"],
+           markersize=9, label=SEMANTIC_STYLES[key]["label"])
+    for key in legend_order
+]
+ax_bar.legend(handles=bar_handles, fontsize=9)
 ax_bar.grid(True, alpha=0.25, axis='y')
 ax_bar.set_ylim(0.25, 1.08)
 
@@ -329,15 +352,16 @@ for g_idx, (group, all_hs) in enumerate(zip(EXPERIMENT_C, results_C)):
     if all_hs[normal_idx] is None:
         continue
 
+    x_vals = []
     sims_last = []
-    for hs_vecs in all_hs:
+    for v_idx, hs_vecs in enumerate(all_hs):
         if hs_vecs is None:
-            sims_last.append(np.nan)
-        else:
-            sims_last.append(cosine_sim(all_hs[normal_idx][-1], hs_vecs[-1]))
+            continue
+        x_vals.append(get_relative_position(group, v_idx))
+        sims_last.append(cosine_sim(all_hs[normal_idx][-1], hs_vecs[-1]))
 
     ax_mono.plot(
-        range(len(group["values"])),
+        x_vals,
         sims_last,
         marker=scatter_markers[g_idx],
         markersize=8,
@@ -346,18 +370,18 @@ for g_idx, (group, all_hs) in enumerate(zip(EXPERIMENT_C, results_C)):
         color=scatter_colors[g_idx]
     )
 
-ax_mono.axvline(x=1.5, color='gray', linestyle=':', alpha=0.4)
-ax_mono.set_xlabel("Value Index\n(0=danger low → 1=mild low → 2=normal → 3=danger high)", fontsize=9)
+ax_mono.axvline(x=0, color='gray', linestyle=':', alpha=0.4)
+ax_mono.set_xlabel("Relative Position to Each Context's Normal Value\n(negative = below normal, 0 = normal, positive = above normal)", fontsize=9)
 ax_mono.set_ylabel("Cosine Similarity to Normal (Last Layer)", fontsize=10)
 ax_mono.set_title(
-    "U-shape Test: Are Extreme Values Least Similar to Normal?\n"
-    "(Expected: index 0 and 3 should be lower than index 1 and 2)",
+    "U-shape Test: Are Values Farther from Normal Least Similar?\n"
+    "(Each context is re-centered so its own normal value sits at x = 0)",
     fontsize=10
 )
 ax_mono.legend(fontsize=9)
 ax_mono.grid(True, alpha=0.3)
-ax_mono.set_xticks([0, 1, 2, 3])
-ax_mono.set_xticklabels(["Danger\nLow", "Mild\nLow", "Normal", "Danger\nHigh"])
+ax_mono.set_xticks([-2, -1, 0, 1, 2])
+ax_mono.set_xticklabels(["Far\nLow", "Low-side", "Normal", "High-side", "Far\nHigh"])
 ax_mono.set_ylim(0.25, 1.08)
 
 plt.suptitle(
