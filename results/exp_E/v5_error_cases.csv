@@ -24,6 +24,6 @@ label_mismatch,3B,category,zero_shot,HbA1c,5.0,1,Low Normal,,2.0,"Model returned
 label_mismatch,3B,category,zero_shot,HbA1c,9.0,4,Diabetes,,3.0,"Model returned a valid biomarker label, but the wrong one.","Based on the HbA1c value of 9.0%, the clinical status is:
 
 Pre-diabetes"
-label_mismatch,3B,category,zero_shot,HbA1c,14.0,5,Severe Diabetes,,4.0,"Model returned a valid biomarker label, but the wrong one.","Based on the HbA1c value of 14.0%, the clinical status is:
+label_mismatch,3B,category,zero_shot,HbA1c,14.0,5,Severe Diabetes,,3.0,"Model returned a valid biomarker label, but the wrong one.","Based on the HbA1c value of 14.0%, the clinical status is:
 
-Diabetes"
+Pre-diabetes"

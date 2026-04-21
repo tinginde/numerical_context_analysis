@@ -1,12 +1,12 @@
 # v5 Behavior Analysis
 
 ## Scope
-This report analyzes the root-level results/v5 outputs only. The nested v5_v0 folder is excluded.
+This report analyzes the results/exp_E outputs.
 
 ## Executive Summary
-- 1B numeric behavior is dominated by refusal first and central-value collapse second. The highest refusal condition is 1B numeric zero_shot at 0.69 refusal rate.
-- The strongest overall setting is 3B category role_prompting with 0.438 accuracy.
-- The strongest ranking signal in scalar scoring is 1B numeric role_prompting with Spearman rho 0.804, showing ordinal awareness without strong calibration.
+- 1B numeric behavior is dominated by refusal first and central-value collapse second. The highest refusal condition is 1B numeric zero_shot at 0.85 refusal rate.
+- The strongest overall setting is 3B category role_prompting with 0.458 accuracy.
+- The strongest ranking signal in scalar scoring is 1B numeric role_prompting with Spearman rho 0.889, showing ordinal awareness without strong calibration.
 - Category outputs are more useful than numeric outputs for this task because the model can align better with biomarker-specific labels than with exact scalar danger levels.
 
 ## Behavioral Findings
@@ -28,8 +28,8 @@ Best 3B category contexts under role prompting:
 
 Weakest 3B category contexts under role prompting:
 - Insulin: accuracy 0.000
-- HR: accuracy 0.333
 - HbA1c: accuracy 0.333
+- TG: accuracy 0.333
 
 ## Interpretation
 - Small instruction-tuned models are dominated by policy refusal and then by a regression-to-normal fallback once refusal is suppressed.

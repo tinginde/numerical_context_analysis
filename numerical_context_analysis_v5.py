@@ -246,7 +246,7 @@ def parse_hybrid(text, ctx_labels):
     Parse 'X - Label' format using biomarker-specific labels.
     Returns (numeric: int|None, category: int|None, is_consistent: bool|None)
     """
-    m = re.search(r'\b([0-5])\s*[-–]\s*([A-Za-z ]+)', text)
+    m = re.search(r'\b([0-5])\s*[-–]\s*([A-Za-z][A-Za-z -]*)', text)
     if m:
         num = int(m.group(1))
         cat = parse_category_ctx(m.group(2).strip(), ctx_labels)
