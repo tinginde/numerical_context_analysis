@@ -1,4 +1,0 @@
-- Python environment is shared with how-llms-work at C:/Users/chutz/myspace/how-llms-work/llm_env
-- Do not create a new virtual environment for this repo
-- Do not run pip install unless the shared llm_env has been activated first
-- CLAUDE.md is the source of truth for Python environment setup
