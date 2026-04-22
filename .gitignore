@@ -1,2 +1,8 @@
 CLAUDE.md
 memories/
+
+# Python cache artifacts
+__pycache__/
+*.py[cod]
+__pycache__/
+*.pyc
