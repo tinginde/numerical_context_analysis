@@ -63,13 +63,19 @@ EXPERIMENT_A_SENTENCES = [
     "He took 24 hours to learn a programming language.",
     "We ate 24 apples for breakfast.",
     "The patient's heart rate was 24 beats per minute.",
+    "His heart rate was 24 beats per minute.",
+    "The heart rate was 24 beats per minute.",
+    "Heart rate: 24 beats per minute.",
     "She saved 24 dollars from her allowance.",
 ]
 EXPERIMENT_A_LABELS = [
     "24 hrs (flight)",
     "24 hrs (learning)",
     "24 apples",
-    "24 bpm (medical)",
+    "24 bpm (patient)",
+    "24 bpm (his)",
+    "24 bpm (no subject)",
+    "24 bpm (measurement)",
     "24 dollars",
 ]
 
@@ -87,12 +93,12 @@ EXPERIMENT_B_NUMBERS = ["2", "24", "240"]   # Corresponds to the first token aft
 # ============================================================
 
 def get_hidden_states(sentence):
-        """
-        Returns:
-            hidden_states : list[Tensor], length = num_layers + 1
-                                            each Tensor has shape = [seq_len, hidden_dim]
-            tokens        : list[str]
-        """
+    """
+    Returns:
+        hidden_states : list[Tensor], length = num_layers + 1
+                                        each Tensor has shape = [seq_len, hidden_dim]
+        tokens        : list[str]
+    """
     inputs = tokenizer(sentence, return_tensors="pt").to(device)
     tokens = tokenizer.convert_ids_to_tokens(inputs["input_ids"][0].tolist())
     with torch.no_grad():
