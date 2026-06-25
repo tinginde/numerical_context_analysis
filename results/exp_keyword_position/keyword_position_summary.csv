@@ -1,0 +1,13 @@
+﻿id,group,sentence,token_pos,token_text,onset_layer,final_layer_similarity
+A1,A_keyword_before,Heart rate: 24 beats per minute.,5,24,4,0.755675
+A2,A_keyword_before,The heart rate was 24 beats per minute.,6,24,4,0.752993
+A3,A_keyword_before,Cardiac monitoring showed a heart rate of 24 beats per minute.,10,24,4,0.678796
+A4,A_keyword_before,The patient's heart rate measured 24 beats per minute.,8,24,3,0.701691
+B1,B_keyword_after,24 beats per minute was the recorded heart rate.,1,24,2,0.628158
+B2,B_keyword_after,24 was the patient's heart rate in beats per minute.,1,24,2,0.628158
+B3,B_keyword_after,"The reading was 24, which represents the heart rate.",5,24,5,0.881105
+B4,B_keyword_after,"Recorded value: 24, context is heart rate.",6,24,,0.892290
+C1,C_no_keyword,The value is 24.,5,24,,1.000000
+C2,C_no_keyword,24 was recorded.,1,24,2,0.628158
+C3,C_no_keyword,The reading is 24.,5,24,,0.893454
+C4,C_no_keyword,The number is 24.,5,24,,0.942432

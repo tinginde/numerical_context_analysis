@@ -1,0 +1,6 @@
+﻿id,specificity_rank,specificity,sentence,token_pos,token_text,onset_layer,final_layer_similarity_to_value,final_layer_similarity_to_flight
+S1,1,strongest clinical,The critically ill patient's HR was 24 bpm.,9,24,4,0.697757,0.503273
+S2,2,patient clinical,The patient's HR was 24 bpm.,7,24,4,0.853105,0.628410
+S3,3,pronoun physiological,His HR was 24 bpm.,5,24,4,0.905866,0.734987
+S4,4,measurement keyword,HR was 24 bpm.,4,24,4,0.846135,0.732037
+S5,5,weakest clinical,The measurement was 24 bpm.,5,24,,0.897443,0.724013

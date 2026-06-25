@@ -1,0 +1,4 @@
+﻿id,label,sentence,token_pos,token_text,final_layer_similarity
+HR,abbreviation,HR was 24 bpm.,4,24,0.732037
+HeartRate,full term,Heart rate was 24 bpm.,5,24,0.552886
+TheHeartRate,full term + article,The heart rate was 24.,6,24,0.574360
