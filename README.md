@@ -35,6 +35,7 @@ This project investigates the **Representation–Behavior Gap** in LLM numerical
 | `numerical_context_analysis_v3.py` | Exp C (3B) | Same as v2, run on LLaMA 3.2-3B for scale comparison. |
 | `numerical_context_analysis_v4.py` | Exp D (PCA) | PCA visualization of hidden states across 8 medical contexts × 6 severity levels. Both 1B and 3B. |
 | `numerical_context_analysis_v5.py` | Exp E (Behavior) | Output-level behavioral evaluation. Factorial design: 3 output formats × 4 prompting strategies × 2 models × 8 contexts × 6 severity values = 1,152 inferences. Metrics: accuracy, Spearman ρ, Risk F1, parse rate. |
+| `geometry_probe_validation.py` | Geometry/probe validation | Independent validation study for anisotropy-controlled cosine geometry and linear decodability of numeric magnitude. No activation patching, logit lens, or component attribution. |
 
 ---
 
@@ -53,10 +54,61 @@ python numerical_context_analysis_v2.py   # Medical severity, 1B (Exp C)
 python numerical_context_analysis_v3.py   # Medical severity, 3B (Exp C)
 python numerical_context_analysis_v4.py   # PCA visualization (Exp D)
 python numerical_context_analysis_v5.py   # Behavioral evaluation, 1,152 inferences (Exp E)
+python geometry_probe_validation.py       # Geometry/probe validation, full stimulus set
 ```
 
 All experiments use greedy decoding and the model's native tokenizer to control for stochasticity and tokenization artifacts. Output figures are saved to `results/`.
 
+### Geometry/probe validation
+
+The geometry/probe validation experiment uses plain-text prompts (no chat template). It asks whether apparent late-layer convergence among different
+numbers in the same context remains after simple anisotropy controls, and
+whether numeric magnitude remains linearly decodable from residual-stream
+activations.
+
+The full-run default is the gated base checkpoint `meta-llama/Llama-3.2-1B`,
+not the Instruct checkpoint. Before the first run, accept access for that model
+on Hugging Face, then authenticate locally:
+
+```bash
+huggingface-cli login
+python geometry_probe_validation.py --validate-load-only
+```
+
+The validation command loads only the checkpoint and prints its resolved
+revision, parameter count, dtype, device, Transformers version, seed, and run
+mode. It never falls back to a tiny/random model: authentication, access, or
+download failures stop with an explicit error.
+
+After the load-only validation succeeds, run the complete 225-prompt experiment:
+
+```bash
+python geometry_probe_validation.py --model meta-llama/Llama-3.2-1B --batch-size 4
+```
+
+CUDA is selected automatically when available and uses bfloat16 when supported;
+extracted activations are converted to float32 before cosine correction and
+probe fitting. The config and report record the resolved checkpoint metadata.
+
+For a small CPU-only pipeline check, explicitly opt into the tiny random model:
+
+```bash
+python geometry_probe_validation.py --smoke-test --device cpu
+```
+
+Outputs are written under a timestamped directory in
+`results/exp_geometry_probe_validation/` and include:
+
+- `stimuli.csv`: balanced generated prompts with validated number-token spans.
+- `pairwise_measurements.csv`: sampled raw, centered, and standardized cosine measurements.
+- `pairwise_summary.csv`: compact layer-wise summaries by pair category.
+- `pairwise_regression.csv`: descriptive regressions of similarity on same-context, same-number, and absolute numeric distance.
+- `probe_results.csv`: ridge probe R2 and MAE for held-out-template and held-out-value splits, including shuffled-label controls.
+- `geometry_probe_validation_report.md`: concise interpretation with explicit limitations.
+
+Limitations: this is a geometry-and-probing validation only. It does not test
+causal use of numeric magnitude, task-dependent construction, attention-head
+attribution, MLP attribution, normalization ablations, or activation patching.
 ---
 
 ## Repository Structure

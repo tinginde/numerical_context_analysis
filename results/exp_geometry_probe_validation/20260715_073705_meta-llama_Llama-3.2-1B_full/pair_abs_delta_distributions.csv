@@ -1,0 +1,5 @@
+pair_category,n_pairs,abs_delta_mean,abs_delta_median,abs_delta_min,abs_delta_max
+same_context_different_number,7875,53.333333333333336,50.0,10,140
+same_number_different_context,1125,0.0,0.0,0,0
+same_context_same_number_different_template,450,0.0,0.0,0,0
+random_baseline,15750,53.333333333333336,50.0,10,140

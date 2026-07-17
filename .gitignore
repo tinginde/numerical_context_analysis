@@ -6,3 +6,5 @@ __pycache__/
 *.py[cod]
 __pycache__/
 *.pyc
+# Large generated geometry-probe measurement tables
+results/**/pairwise_measurements.csv

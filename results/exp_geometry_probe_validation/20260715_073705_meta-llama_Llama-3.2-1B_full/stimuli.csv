@@ -1,0 +1,226 @@
+stimulus_id,value,context,template_id,template_index,prompt,number_token_start,number_token_end,number_token_span,prompt_final_token,tokens
+medical_hr_T1_40,40,medical_hr,T1,0,The patient's heart rate was 40 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 40 Ġbeats Ġper Ġminute .
+medical_hr_T1_50,50,medical_hr,T1,0,The patient's heart rate was 50 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 50 Ġbeats Ġper Ġminute .
+medical_hr_T1_60,60,medical_hr,T1,0,The patient's heart rate was 60 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 60 Ġbeats Ġper Ġminute .
+medical_hr_T1_70,70,medical_hr,T1,0,The patient's heart rate was 70 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 70 Ġbeats Ġper Ġminute .
+medical_hr_T1_80,80,medical_hr,T1,0,The patient's heart rate was 80 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 80 Ġbeats Ġper Ġminute .
+medical_hr_T1_90,90,medical_hr,T1,0,The patient's heart rate was 90 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 90 Ġbeats Ġper Ġminute .
+medical_hr_T1_100,100,medical_hr,T1,0,The patient's heart rate was 100 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 100 Ġbeats Ġper Ġminute .
+medical_hr_T1_110,110,medical_hr,T1,0,The patient's heart rate was 110 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 110 Ġbeats Ġper Ġminute .
+medical_hr_T1_120,120,medical_hr,T1,0,The patient's heart rate was 120 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 120 Ġbeats Ġper Ġminute .
+medical_hr_T1_130,130,medical_hr,T1,0,The patient's heart rate was 130 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 130 Ġbeats Ġper Ġminute .
+medical_hr_T1_140,140,medical_hr,T1,0,The patient's heart rate was 140 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 140 Ġbeats Ġper Ġminute .
+medical_hr_T1_150,150,medical_hr,T1,0,The patient's heart rate was 150 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 150 Ġbeats Ġper Ġminute .
+medical_hr_T1_160,160,medical_hr,T1,0,The patient's heart rate was 160 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 160 Ġbeats Ġper Ġminute .
+medical_hr_T1_170,170,medical_hr,T1,0,The patient's heart rate was 170 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 170 Ġbeats Ġper Ġminute .
+medical_hr_T1_180,180,medical_hr,T1,0,The patient's heart rate was 180 beats per minute.,8,8,8,12,<|begin_of_text|> The Ġpatient 's Ġheart Ġrate Ġwas Ġ 180 Ġbeats Ġper Ġminute .
+medical_hr_T2_40,40,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 40 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 40 Ġbpm .
+medical_hr_T2_50,50,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 50 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 50 Ġbpm .
+medical_hr_T2_60,60,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 60 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 60 Ġbpm .
+medical_hr_T2_70,70,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 70 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 70 Ġbpm .
+medical_hr_T2_80,80,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 80 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 80 Ġbpm .
+medical_hr_T2_90,90,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 90 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 90 Ġbpm .
+medical_hr_T2_100,100,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 100 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 100 Ġbpm .
+medical_hr_T2_110,110,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 110 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 110 Ġbpm .
+medical_hr_T2_120,120,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 120 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 120 Ġbpm .
+medical_hr_T2_130,130,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 130 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 130 Ġbpm .
+medical_hr_T2_140,140,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 140 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 140 Ġbpm .
+medical_hr_T2_150,150,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 150 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 150 Ġbpm .
+medical_hr_T2_160,160,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 160 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 160 Ġbpm .
+medical_hr_T2_170,170,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 170 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 170 Ġbpm .
+medical_hr_T2_180,180,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 180 bpm.,9,9,9,11,<|begin_of_text|> Clinical Ġmonitoring Ġrecorded Ġa Ġheart Ġrate Ġof Ġ 180 Ġbpm .
+medical_hr_T3_40,40,medical_hr,T3,2,The nurse documented the patient's pulse as 40 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 40 Ġbpm .
+medical_hr_T3_50,50,medical_hr,T3,2,The nurse documented the patient's pulse as 50 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 50 Ġbpm .
+medical_hr_T3_60,60,medical_hr,T3,2,The nurse documented the patient's pulse as 60 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 60 Ġbpm .
+medical_hr_T3_70,70,medical_hr,T3,2,The nurse documented the patient's pulse as 70 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 70 Ġbpm .
+medical_hr_T3_80,80,medical_hr,T3,2,The nurse documented the patient's pulse as 80 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 80 Ġbpm .
+medical_hr_T3_90,90,medical_hr,T3,2,The nurse documented the patient's pulse as 90 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 90 Ġbpm .
+medical_hr_T3_100,100,medical_hr,T3,2,The nurse documented the patient's pulse as 100 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 100 Ġbpm .
+medical_hr_T3_110,110,medical_hr,T3,2,The nurse documented the patient's pulse as 110 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 110 Ġbpm .
+medical_hr_T3_120,120,medical_hr,T3,2,The nurse documented the patient's pulse as 120 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 120 Ġbpm .
+medical_hr_T3_130,130,medical_hr,T3,2,The nurse documented the patient's pulse as 130 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 130 Ġbpm .
+medical_hr_T3_140,140,medical_hr,T3,2,The nurse documented the patient's pulse as 140 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 140 Ġbpm .
+medical_hr_T3_150,150,medical_hr,T3,2,The nurse documented the patient's pulse as 150 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 150 Ġbpm .
+medical_hr_T3_160,160,medical_hr,T3,2,The nurse documented the patient's pulse as 160 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 160 Ġbpm .
+medical_hr_T3_170,170,medical_hr,T3,2,The nurse documented the patient's pulse as 170 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 170 Ġbpm .
+medical_hr_T3_180,180,medical_hr,T3,2,The nurse documented the patient's pulse as 180 bpm.,10,10,10,12,<|begin_of_text|> The Ġnurse Ġdocumented Ġthe Ġpatient 's Ġpulse Ġas Ġ 180 Ġbpm .
+medical_hr_T4_40,40,medical_hr,T4,3,"During triage, the heart-rate reading was 40 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 40 Ġbeats Ġper Ġminute ."
+medical_hr_T4_50,50,medical_hr,T4,3,"During triage, the heart-rate reading was 50 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 50 Ġbeats Ġper Ġminute ."
+medical_hr_T4_60,60,medical_hr,T4,3,"During triage, the heart-rate reading was 60 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 60 Ġbeats Ġper Ġminute ."
+medical_hr_T4_70,70,medical_hr,T4,3,"During triage, the heart-rate reading was 70 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 70 Ġbeats Ġper Ġminute ."
+medical_hr_T4_80,80,medical_hr,T4,3,"During triage, the heart-rate reading was 80 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 80 Ġbeats Ġper Ġminute ."
+medical_hr_T4_90,90,medical_hr,T4,3,"During triage, the heart-rate reading was 90 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 90 Ġbeats Ġper Ġminute ."
+medical_hr_T4_100,100,medical_hr,T4,3,"During triage, the heart-rate reading was 100 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 100 Ġbeats Ġper Ġminute ."
+medical_hr_T4_110,110,medical_hr,T4,3,"During triage, the heart-rate reading was 110 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 110 Ġbeats Ġper Ġminute ."
+medical_hr_T4_120,120,medical_hr,T4,3,"During triage, the heart-rate reading was 120 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 120 Ġbeats Ġper Ġminute ."
+medical_hr_T4_130,130,medical_hr,T4,3,"During triage, the heart-rate reading was 130 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 130 Ġbeats Ġper Ġminute ."
+medical_hr_T4_140,140,medical_hr,T4,3,"During triage, the heart-rate reading was 140 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 140 Ġbeats Ġper Ġminute ."
+medical_hr_T4_150,150,medical_hr,T4,3,"During triage, the heart-rate reading was 150 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 150 Ġbeats Ġper Ġminute ."
+medical_hr_T4_160,160,medical_hr,T4,3,"During triage, the heart-rate reading was 160 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 160 Ġbeats Ġper Ġminute ."
+medical_hr_T4_170,170,medical_hr,T4,3,"During triage, the heart-rate reading was 170 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 170 Ġbeats Ġper Ġminute ."
+medical_hr_T4_180,180,medical_hr,T4,3,"During triage, the heart-rate reading was 180 beats per minute.",11,11,11,15,"<|begin_of_text|> During Ġtri age , Ġthe Ġheart -rate Ġreading Ġwas Ġ 180 Ġbeats Ġper Ġminute ."
+medical_hr_T5_40,40,medical_hr,T5,4,The bedside monitor showed HR at 40 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 40 Ġbpm .
+medical_hr_T5_50,50,medical_hr,T5,4,The bedside monitor showed HR at 50 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 50 Ġbpm .
+medical_hr_T5_60,60,medical_hr,T5,4,The bedside monitor showed HR at 60 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 60 Ġbpm .
+medical_hr_T5_70,70,medical_hr,T5,4,The bedside monitor showed HR at 70 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 70 Ġbpm .
+medical_hr_T5_80,80,medical_hr,T5,4,The bedside monitor showed HR at 80 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 80 Ġbpm .
+medical_hr_T5_90,90,medical_hr,T5,4,The bedside monitor showed HR at 90 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 90 Ġbpm .
+medical_hr_T5_100,100,medical_hr,T5,4,The bedside monitor showed HR at 100 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 100 Ġbpm .
+medical_hr_T5_110,110,medical_hr,T5,4,The bedside monitor showed HR at 110 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 110 Ġbpm .
+medical_hr_T5_120,120,medical_hr,T5,4,The bedside monitor showed HR at 120 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 120 Ġbpm .
+medical_hr_T5_130,130,medical_hr,T5,4,The bedside monitor showed HR at 130 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 130 Ġbpm .
+medical_hr_T5_140,140,medical_hr,T5,4,The bedside monitor showed HR at 140 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 140 Ġbpm .
+medical_hr_T5_150,150,medical_hr,T5,4,The bedside monitor showed HR at 150 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 150 Ġbpm .
+medical_hr_T5_160,160,medical_hr,T5,4,The bedside monitor showed HR at 160 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 160 Ġbpm .
+medical_hr_T5_170,170,medical_hr,T5,4,The bedside monitor showed HR at 170 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 170 Ġbpm .
+medical_hr_T5_180,180,medical_hr,T5,4,The bedside monitor showed HR at 180 bpm.,8,8,8,10,<|begin_of_text|> The Ġbedside Ġmonitor Ġshowed ĠHR Ġat Ġ 180 Ġbpm .
+travel_duration_T1_40,40,travel_duration,T1,0,The flight duration was 40 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 40 Ġhours .
+travel_duration_T1_50,50,travel_duration,T1,0,The flight duration was 50 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 50 Ġhours .
+travel_duration_T1_60,60,travel_duration,T1,0,The flight duration was 60 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 60 Ġhours .
+travel_duration_T1_70,70,travel_duration,T1,0,The flight duration was 70 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 70 Ġhours .
+travel_duration_T1_80,80,travel_duration,T1,0,The flight duration was 80 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 80 Ġhours .
+travel_duration_T1_90,90,travel_duration,T1,0,The flight duration was 90 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 90 Ġhours .
+travel_duration_T1_100,100,travel_duration,T1,0,The flight duration was 100 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 100 Ġhours .
+travel_duration_T1_110,110,travel_duration,T1,0,The flight duration was 110 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 110 Ġhours .
+travel_duration_T1_120,120,travel_duration,T1,0,The flight duration was 120 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 120 Ġhours .
+travel_duration_T1_130,130,travel_duration,T1,0,The flight duration was 130 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 130 Ġhours .
+travel_duration_T1_140,140,travel_duration,T1,0,The flight duration was 140 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 140 Ġhours .
+travel_duration_T1_150,150,travel_duration,T1,0,The flight duration was 150 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 150 Ġhours .
+travel_duration_T1_160,160,travel_duration,T1,0,The flight duration was 160 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 160 Ġhours .
+travel_duration_T1_170,170,travel_duration,T1,0,The flight duration was 170 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 170 Ġhours .
+travel_duration_T1_180,180,travel_duration,T1,0,The flight duration was 180 hours.,6,6,6,8,<|begin_of_text|> The Ġflight Ġduration Ġwas Ġ 180 Ġhours .
+travel_duration_T2_40,40,travel_duration,T2,1,The trip itinerary listed the travel time as 40 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 40 Ġhours .
+travel_duration_T2_50,50,travel_duration,T2,1,The trip itinerary listed the travel time as 50 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 50 Ġhours .
+travel_duration_T2_60,60,travel_duration,T2,1,The trip itinerary listed the travel time as 60 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 60 Ġhours .
+travel_duration_T2_70,70,travel_duration,T2,1,The trip itinerary listed the travel time as 70 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 70 Ġhours .
+travel_duration_T2_80,80,travel_duration,T2,1,The trip itinerary listed the travel time as 80 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 80 Ġhours .
+travel_duration_T2_90,90,travel_duration,T2,1,The trip itinerary listed the travel time as 90 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 90 Ġhours .
+travel_duration_T2_100,100,travel_duration,T2,1,The trip itinerary listed the travel time as 100 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 100 Ġhours .
+travel_duration_T2_110,110,travel_duration,T2,1,The trip itinerary listed the travel time as 110 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 110 Ġhours .
+travel_duration_T2_120,120,travel_duration,T2,1,The trip itinerary listed the travel time as 120 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 120 Ġhours .
+travel_duration_T2_130,130,travel_duration,T2,1,The trip itinerary listed the travel time as 130 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 130 Ġhours .
+travel_duration_T2_140,140,travel_duration,T2,1,The trip itinerary listed the travel time as 140 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 140 Ġhours .
+travel_duration_T2_150,150,travel_duration,T2,1,The trip itinerary listed the travel time as 150 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 150 Ġhours .
+travel_duration_T2_160,160,travel_duration,T2,1,The trip itinerary listed the travel time as 160 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 160 Ġhours .
+travel_duration_T2_170,170,travel_duration,T2,1,The trip itinerary listed the travel time as 170 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 170 Ġhours .
+travel_duration_T2_180,180,travel_duration,T2,1,The trip itinerary listed the travel time as 180 hours.,10,10,10,12,<|begin_of_text|> The Ġtrip Ġitinerary Ġlisted Ġthe Ġtravel Ġtime Ġas Ġ 180 Ġhours .
+travel_duration_T3_40,40,travel_duration,T3,2,The route took 40 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 40 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_50,50,travel_duration,T3,2,The route took 50 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 50 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_60,60,travel_duration,T3,2,The route took 60 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 60 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_70,70,travel_duration,T3,2,The route took 70 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 70 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_80,80,travel_duration,T3,2,The route took 80 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 80 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_90,90,travel_duration,T3,2,The route took 90 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 90 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_100,100,travel_duration,T3,2,The route took 100 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 100 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_110,110,travel_duration,T3,2,The route took 110 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 110 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_120,120,travel_duration,T3,2,The route took 120 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 120 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_130,130,travel_duration,T3,2,The route took 130 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 130 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_140,140,travel_duration,T3,2,The route took 140 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 140 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_150,150,travel_duration,T3,2,The route took 150 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 150 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_160,160,travel_duration,T3,2,The route took 160 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 160 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_170,170,travel_duration,T3,2,The route took 170 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 170 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T3_180,180,travel_duration,T3,2,The route took 180 hours from departure to arrival.,5,5,5,11,<|begin_of_text|> The Ġroute Ġtook Ġ 180 Ġhours Ġfrom Ġdeparture Ġto Ġarrival .
+travel_duration_T4_40,40,travel_duration,T4,3,The long-distance journey lasted 40 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 40 Ġhours .
+travel_duration_T4_50,50,travel_duration,T4,3,The long-distance journey lasted 50 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 50 Ġhours .
+travel_duration_T4_60,60,travel_duration,T4,3,The long-distance journey lasted 60 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 60 Ġhours .
+travel_duration_T4_70,70,travel_duration,T4,3,The long-distance journey lasted 70 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 70 Ġhours .
+travel_duration_T4_80,80,travel_duration,T4,3,The long-distance journey lasted 80 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 80 Ġhours .
+travel_duration_T4_90,90,travel_duration,T4,3,The long-distance journey lasted 90 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 90 Ġhours .
+travel_duration_T4_100,100,travel_duration,T4,3,The long-distance journey lasted 100 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 100 Ġhours .
+travel_duration_T4_110,110,travel_duration,T4,3,The long-distance journey lasted 110 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 110 Ġhours .
+travel_duration_T4_120,120,travel_duration,T4,3,The long-distance journey lasted 120 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 120 Ġhours .
+travel_duration_T4_130,130,travel_duration,T4,3,The long-distance journey lasted 130 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 130 Ġhours .
+travel_duration_T4_140,140,travel_duration,T4,3,The long-distance journey lasted 140 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 140 Ġhours .
+travel_duration_T4_150,150,travel_duration,T4,3,The long-distance journey lasted 150 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 150 Ġhours .
+travel_duration_T4_160,160,travel_duration,T4,3,The long-distance journey lasted 160 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 160 Ġhours .
+travel_duration_T4_170,170,travel_duration,T4,3,The long-distance journey lasted 170 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 170 Ġhours .
+travel_duration_T4_180,180,travel_duration,T4,3,The long-distance journey lasted 180 hours.,7,7,7,9,<|begin_of_text|> The Ġlong -distance Ġjourney Ġlasted Ġ 180 Ġhours .
+travel_duration_T5_40,40,travel_duration,T5,4,The schedule recorded 40 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 40 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_50,50,travel_duration,T5,4,The schedule recorded 50 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 50 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_60,60,travel_duration,T5,4,The schedule recorded 60 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 60 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_70,70,travel_duration,T5,4,The schedule recorded 70 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 70 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_80,80,travel_duration,T5,4,The schedule recorded 80 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 80 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_90,90,travel_duration,T5,4,The schedule recorded 90 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 90 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_100,100,travel_duration,T5,4,The schedule recorded 100 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 100 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_110,110,travel_duration,T5,4,The schedule recorded 110 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 110 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_120,120,travel_duration,T5,4,The schedule recorded 120 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 120 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_130,130,travel_duration,T5,4,The schedule recorded 130 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 130 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_140,140,travel_duration,T5,4,The schedule recorded 140 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 140 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_150,150,travel_duration,T5,4,The schedule recorded 150 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 150 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_160,160,travel_duration,T5,4,The schedule recorded 160 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 160 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_170,170,travel_duration,T5,4,The schedule recorded 170 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 170 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+travel_duration_T5_180,180,travel_duration,T5,4,The schedule recorded 180 hours of total travel time.,5,5,5,11,<|begin_of_text|> The Ġschedule Ġrecorded Ġ 180 Ġhours Ġof Ġtotal Ġtravel Ġtime .
+object_count_T1_40,40,object_count,T1,0,The storage room contained 40 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 40 Ġboxes .
+object_count_T1_50,50,object_count,T1,0,The storage room contained 50 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 50 Ġboxes .
+object_count_T1_60,60,object_count,T1,0,The storage room contained 60 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 60 Ġboxes .
+object_count_T1_70,70,object_count,T1,0,The storage room contained 70 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 70 Ġboxes .
+object_count_T1_80,80,object_count,T1,0,The storage room contained 80 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 80 Ġboxes .
+object_count_T1_90,90,object_count,T1,0,The storage room contained 90 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 90 Ġboxes .
+object_count_T1_100,100,object_count,T1,0,The storage room contained 100 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 100 Ġboxes .
+object_count_T1_110,110,object_count,T1,0,The storage room contained 110 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 110 Ġboxes .
+object_count_T1_120,120,object_count,T1,0,The storage room contained 120 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 120 Ġboxes .
+object_count_T1_130,130,object_count,T1,0,The storage room contained 130 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 130 Ġboxes .
+object_count_T1_140,140,object_count,T1,0,The storage room contained 140 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 140 Ġboxes .
+object_count_T1_150,150,object_count,T1,0,The storage room contained 150 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 150 Ġboxes .
+object_count_T1_160,160,object_count,T1,0,The storage room contained 160 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 160 Ġboxes .
+object_count_T1_170,170,object_count,T1,0,The storage room contained 170 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 170 Ġboxes .
+object_count_T1_180,180,object_count,T1,0,The storage room contained 180 boxes.,6,6,6,8,<|begin_of_text|> The Ġstorage Ġroom Ġcontained Ġ 180 Ġboxes .
+object_count_T2_40,40,object_count,T2,1,The inventory count showed 40 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 40 Ġobjects .
+object_count_T2_50,50,object_count,T2,1,The inventory count showed 50 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 50 Ġobjects .
+object_count_T2_60,60,object_count,T2,1,The inventory count showed 60 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 60 Ġobjects .
+object_count_T2_70,70,object_count,T2,1,The inventory count showed 70 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 70 Ġobjects .
+object_count_T2_80,80,object_count,T2,1,The inventory count showed 80 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 80 Ġobjects .
+object_count_T2_90,90,object_count,T2,1,The inventory count showed 90 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 90 Ġobjects .
+object_count_T2_100,100,object_count,T2,1,The inventory count showed 100 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 100 Ġobjects .
+object_count_T2_110,110,object_count,T2,1,The inventory count showed 110 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 110 Ġobjects .
+object_count_T2_120,120,object_count,T2,1,The inventory count showed 120 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 120 Ġobjects .
+object_count_T2_130,130,object_count,T2,1,The inventory count showed 130 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 130 Ġobjects .
+object_count_T2_140,140,object_count,T2,1,The inventory count showed 140 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 140 Ġobjects .
+object_count_T2_150,150,object_count,T2,1,The inventory count showed 150 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 150 Ġobjects .
+object_count_T2_160,160,object_count,T2,1,The inventory count showed 160 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 160 Ġobjects .
+object_count_T2_170,170,object_count,T2,1,The inventory count showed 170 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 170 Ġobjects .
+object_count_T2_180,180,object_count,T2,1,The inventory count showed 180 objects.,6,6,6,8,<|begin_of_text|> The Ġinventory Ġcount Ġshowed Ġ 180 Ġobjects .
+object_count_T3_40,40,object_count,T3,2,The collection included 40 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 40 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_50,50,object_count,T3,2,The collection included 50 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 50 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_60,60,object_count,T3,2,The collection included 60 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 60 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_70,70,object_count,T3,2,The collection included 70 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 70 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_80,80,object_count,T3,2,The collection included 80 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 80 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_90,90,object_count,T3,2,The collection included 90 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 90 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_100,100,object_count,T3,2,The collection included 100 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 100 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_110,110,object_count,T3,2,The collection included 110 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 110 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_120,120,object_count,T3,2,The collection included 120 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 120 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_130,130,object_count,T3,2,The collection included 130 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 130 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_140,140,object_count,T3,2,The collection included 140 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 140 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_150,150,object_count,T3,2,The collection included 150 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 150 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_160,160,object_count,T3,2,The collection included 160 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 160 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_170,170,object_count,T3,2,The collection included 170 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 170 Ġitems Ġon Ġthe Ġshelf .
+object_count_T3_180,180,object_count,T3,2,The collection included 180 items on the shelf.,5,5,5,10,<|begin_of_text|> The Ġcollection Ġincluded Ġ 180 Ġitems Ġon Ġthe Ġshelf .
+object_count_T4_40,40,object_count,T4,3,The warehouse log listed 40 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 40 Ġpackages .
+object_count_T4_50,50,object_count,T4,3,The warehouse log listed 50 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 50 Ġpackages .
+object_count_T4_60,60,object_count,T4,3,The warehouse log listed 60 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 60 Ġpackages .
+object_count_T4_70,70,object_count,T4,3,The warehouse log listed 70 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 70 Ġpackages .
+object_count_T4_80,80,object_count,T4,3,The warehouse log listed 80 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 80 Ġpackages .
+object_count_T4_90,90,object_count,T4,3,The warehouse log listed 90 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 90 Ġpackages .
+object_count_T4_100,100,object_count,T4,3,The warehouse log listed 100 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 100 Ġpackages .
+object_count_T4_110,110,object_count,T4,3,The warehouse log listed 110 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 110 Ġpackages .
+object_count_T4_120,120,object_count,T4,3,The warehouse log listed 120 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 120 Ġpackages .
+object_count_T4_130,130,object_count,T4,3,The warehouse log listed 130 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 130 Ġpackages .
+object_count_T4_140,140,object_count,T4,3,The warehouse log listed 140 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 140 Ġpackages .
+object_count_T4_150,150,object_count,T4,3,The warehouse log listed 150 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 150 Ġpackages .
+object_count_T4_160,160,object_count,T4,3,The warehouse log listed 160 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 160 Ġpackages .
+object_count_T4_170,170,object_count,T4,3,The warehouse log listed 170 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 170 Ġpackages .
+object_count_T4_180,180,object_count,T4,3,The warehouse log listed 180 packages.,6,6,6,8,<|begin_of_text|> The Ġwarehouse Ġlog Ġlisted Ġ 180 Ġpackages .
+object_count_T5_40,40,object_count,T5,4,The basket held 40 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 40 Ġsmall Ġobjects .
+object_count_T5_50,50,object_count,T5,4,The basket held 50 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 50 Ġsmall Ġobjects .
+object_count_T5_60,60,object_count,T5,4,The basket held 60 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 60 Ġsmall Ġobjects .
+object_count_T5_70,70,object_count,T5,4,The basket held 70 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 70 Ġsmall Ġobjects .
+object_count_T5_80,80,object_count,T5,4,The basket held 80 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 80 Ġsmall Ġobjects .
+object_count_T5_90,90,object_count,T5,4,The basket held 90 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 90 Ġsmall Ġobjects .
+object_count_T5_100,100,object_count,T5,4,The basket held 100 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 100 Ġsmall Ġobjects .
+object_count_T5_110,110,object_count,T5,4,The basket held 110 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 110 Ġsmall Ġobjects .
+object_count_T5_120,120,object_count,T5,4,The basket held 120 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 120 Ġsmall Ġobjects .
+object_count_T5_130,130,object_count,T5,4,The basket held 130 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 130 Ġsmall Ġobjects .
+object_count_T5_140,140,object_count,T5,4,The basket held 140 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 140 Ġsmall Ġobjects .
+object_count_T5_150,150,object_count,T5,4,The basket held 150 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 150 Ġsmall Ġobjects .
+object_count_T5_160,160,object_count,T5,4,The basket held 160 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 160 Ġsmall Ġobjects .
+object_count_T5_170,170,object_count,T5,4,The basket held 170 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 170 Ġsmall Ġobjects .
+object_count_T5_180,180,object_count,T5,4,The basket held 180 small objects.,5,5,5,8,<|begin_of_text|> The Ġbasket Ġheld Ġ 180 Ġsmall Ġobjects .

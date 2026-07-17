@@ -1,0 +1,15 @@
+{
+  "model": "hf-internal-testing/tiny-random-LlamaForCausalLM",
+  "output_root": "results/exp_geometry_probe_validation",
+  "values_start": 40,
+  "values_stop": 60,
+  "values_step": 10,
+  "batch_size": 2,
+  "seed": 13,
+  "ridge_alpha": 10.0,
+  "bootstrap_samples": 50,
+  "max_pairs_per_category": 2000,
+  "smoke_test": true,
+  "save_activations": false,
+  "device": "cpu"
+}

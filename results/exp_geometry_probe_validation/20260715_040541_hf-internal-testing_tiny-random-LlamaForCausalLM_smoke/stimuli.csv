@@ -1,0 +1,19 @@
+stimulus_id,value,context,template_id,template_index,prompt,number_token_start,number_token_end,number_token_span,prompt_final_token,tokens
+medical_hr_T1_40,40,medical_hr,T1,0,The patient's heart rate was 40 beats per minute.,8,10,8 9 10,15,<s> ▁The ▁patient ' s ▁heart ▁rate ▁was ▁ 4 0 ▁be ats ▁per ▁minute .
+medical_hr_T1_50,50,medical_hr,T1,0,The patient's heart rate was 50 beats per minute.,8,10,8 9 10,15,<s> ▁The ▁patient ' s ▁heart ▁rate ▁was ▁ 5 0 ▁be ats ▁per ▁minute .
+medical_hr_T1_60,60,medical_hr,T1,0,The patient's heart rate was 60 beats per minute.,8,10,8 9 10,15,<s> ▁The ▁patient ' s ▁heart ▁rate ▁was ▁ 6 0 ▁be ats ▁per ▁minute .
+medical_hr_T2_40,40,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 40 bpm.,10,12,10 11 12,15,<s> ▁C lin ical ▁monitoring ▁recorded ▁a ▁heart ▁rate ▁of ▁ 4 0 ▁b pm .
+medical_hr_T2_50,50,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 50 bpm.,10,12,10 11 12,15,<s> ▁C lin ical ▁monitoring ▁recorded ▁a ▁heart ▁rate ▁of ▁ 5 0 ▁b pm .
+medical_hr_T2_60,60,medical_hr,T2,1,Clinical monitoring recorded a heart rate of 60 bpm.,10,12,10 11 12,15,<s> ▁C lin ical ▁monitoring ▁recorded ▁a ▁heart ▁rate ▁of ▁ 6 0 ▁b pm .
+travel_duration_T1_40,40,travel_duration,T1,0,The flight duration was 40 hours.,5,7,5 6 7,9,<s> ▁The ▁flight ▁duration ▁was ▁ 4 0 ▁hours .
+travel_duration_T1_50,50,travel_duration,T1,0,The flight duration was 50 hours.,5,7,5 6 7,9,<s> ▁The ▁flight ▁duration ▁was ▁ 5 0 ▁hours .
+travel_duration_T1_60,60,travel_duration,T1,0,The flight duration was 60 hours.,5,7,5 6 7,9,<s> ▁The ▁flight ▁duration ▁was ▁ 6 0 ▁hours .
+travel_duration_T2_40,40,travel_duration,T2,1,The trip itinerary listed the travel time as 40 hours.,11,13,11 12 13,15,<s> ▁The ▁trip ▁it iner ary ▁listed ▁the ▁travel ▁time ▁as ▁ 4 0 ▁hours .
+travel_duration_T2_50,50,travel_duration,T2,1,The trip itinerary listed the travel time as 50 hours.,11,13,11 12 13,15,<s> ▁The ▁trip ▁it iner ary ▁listed ▁the ▁travel ▁time ▁as ▁ 5 0 ▁hours .
+travel_duration_T2_60,60,travel_duration,T2,1,The trip itinerary listed the travel time as 60 hours.,11,13,11 12 13,15,<s> ▁The ▁trip ▁it iner ary ▁listed ▁the ▁travel ▁time ▁as ▁ 6 0 ▁hours .
+object_count_T1_40,40,object_count,T1,0,The storage room contained 40 boxes.,5,7,5 6 7,9,<s> ▁The ▁storage ▁room ▁contained ▁ 4 0 ▁boxes .
+object_count_T1_50,50,object_count,T1,0,The storage room contained 50 boxes.,5,7,5 6 7,9,<s> ▁The ▁storage ▁room ▁contained ▁ 5 0 ▁boxes .
+object_count_T1_60,60,object_count,T1,0,The storage room contained 60 boxes.,5,7,5 6 7,9,<s> ▁The ▁storage ▁room ▁contained ▁ 6 0 ▁boxes .
+object_count_T2_40,40,object_count,T2,1,The inventory count showed 40 objects.,6,8,6 7 8,10,<s> ▁The ▁invent ory ▁count ▁showed ▁ 4 0 ▁objects .
+object_count_T2_50,50,object_count,T2,1,The inventory count showed 50 objects.,6,8,6 7 8,10,<s> ▁The ▁invent ory ▁count ▁showed ▁ 5 0 ▁objects .
+object_count_T2_60,60,object_count,T2,1,The inventory count showed 60 objects.,6,8,6 7 8,10,<s> ▁The ▁invent ory ▁count ▁showed ▁ 6 0 ▁objects .
