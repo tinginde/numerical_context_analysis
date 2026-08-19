@@ -8,3 +8,9 @@ __pycache__/
 *.pyc
 # Large generated geometry-probe measurement tables
 results/**/pairwise_measurements.csv
+
+# Internal discussion drafts are not part of the public research repository
+discussion_drafts/
+
+# Local agent instructions are not part of the public repository
+AGENTS.md

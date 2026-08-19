@@ -2,6 +2,8 @@
 
 Output figures from all experiments. Subfolders correspond to the experiment table in the project README.
 
+> **Interpretation note:** these are exploratory outputs produced across several stages of the project. Earlier figures should be read together with the later geometry/probe validation, which shows that high within-context cosine does not imply loss of numerical information. See the [project README](../README.md) for the current evidence boundary.
+
 ---
 
 ## `exp_A_B/` — Cross-Context & Cross-Magnitude (v1)
@@ -63,3 +65,31 @@ Associated analysis files:
 ---
 
 Figures are generated automatically by running the corresponding scripts from the repository root. See the project README for setup and execution instructions.
+
+---
+
+## `exp_geometry_probe_validation/` — Geometry and Linear Decodability
+
+The maintained validation workflow tests whether the earlier context-dominant ordering survives anisotropy correction and whether numerical magnitude remains linearly decodable.
+
+The completed full run contains:
+
+- raw, mean-centered, and per-dimension standardized cosine summaries;
+- same-context, same-number, and matched random-pair comparisons;
+- crossed template/value cluster-bootstrap intervals;
+- held-out-template and held-out-value ridge probes;
+- shuffled-label controls;
+- a preprocessing and evidence-boundary audit.
+
+Start with the [expanded full-run report](exp_geometry_probe_validation/20260715_073705_meta-llama_Llama-3.2-1B_full/geometry_probe_validation_expanded_report.md). The full-run `pairwise_measurements.csv` is excluded from Git because of its size; compact CSV summaries and all report figures are tracked.
+
+---
+
+## Additional Control Experiments
+
+- `exp_clinical_specificity/`: clinical-specificity wording variants.
+- `exp_hr_wording_flight_baseline/`: `heart rate` versus `HR` wording against a travel baseline.
+- `exp_keyword_position/`: domain-keyword placement and token-position confounding.
+- `exp_token_position_control/`: approximately position-matched neutral, abbreviated, full-term, and clinical framings.
+
+These controls identify candidate explanations and confounds; they are not confirmatory tests.
